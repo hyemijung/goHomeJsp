@@ -1,0 +1,108 @@
+9일차
+
+능력단위: 자바 입출력과 폼
+
+
+Cannot make a static reference to the non-static method instanceMethod() from the type ClassEx
+
+
+the.good.question.GlobalLocalTest@6442b0a6
+
+
+Duplicate method add(int, int) in type MyCalc
+
+사용자의 입력을 받을 수 있다 숫자만
+MyCalculator
++
+-
+*
+/
+정수, 정수
+실수, 실수
+int 배열3     1 2 3
+
+배열안에 존재하는 모든 수를 더한 값을 출력하는 
+오버로딩 메서드를 만드시오
+
+출력결과
+정수만 입력해주세요
+2
+정수만 입력해주세요
+3
+
+5
+-1
+6
+0.666666
+
+실수만 입력해주세요
+2.0
+실수만 입력해주세요
+3.0
+
+5.0
+-1.0
+6.0
+0.666666
+
+
+5
+int sum(int ?){
+     1 2 3 4 5
+
+ return 15;    
+}
+2, 3 /       2 4
+void sum(int 1?, int 2?){
+   2 + 3
+    5 
+}
+
+출력결과
+int sum(int ?) 호출
+15
+
+void sum(int 1?, int 2?) 호출
+5
+
+내가 만약 5라는 값이 있으면
+1부터 5까지 다 더하는 것이 있으면 좋겠다
+
+그러고보니까 두 숫자가 있으면 
+두 숫자를 더한 결과를 보여주면 좋겠다
+
+
+
+구구단
+2 * 1 = 2 2 * 2 = 4
+3 * 1 = 3
+
+
+
+
+
+2 * 1 = 2
+2 * 2 = 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

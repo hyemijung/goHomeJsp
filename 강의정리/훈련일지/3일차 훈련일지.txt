@@ -1,0 +1,61 @@
+3일차
+
+
+시스템 패키지 이행
+github -> 협력 
+
+cvs, svn, git -> 파일 형상 관리 시스템
+
+ctrl + alt + 화살표 위 or 아래: 라인 복사
+
+OperationEx
+
+원격저장소
+
+gitRepository
+
+tortoisegit
+
+
+C:\Program Files (x86)\Notepad++\notepad++.exe
+
+remote 원격 
+local 지역
+
+C:\gitRepository
+
+
+https://www.gitignore.io/
+
+regedit
+
+
+
+commit 저지른다
+메세지 제목
+상세설명
+
+파일 관리 예외 대상 git ignore파일 추가
+
+이클립스 workspace 프로젝트 생성
+
+챕터2 변수 부분
+
+만약 새로 내용이 추가되었다면 어쩌죠?
+
+
+그럴땐 pull입니다
+
+
+동기화
+
+자원 세어나간다
+Resource leak: 'scan' is never closed
+
+
+
+
+
+
+
+

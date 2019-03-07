@@ -1,0 +1,702 @@
+27일차 강의
+
+- tab
+- shift + tab : 탭한거 다시 반대로 
+
+
+< 화면 구현 >
+
+<첫번째 검색방식>
+>> 이건 이전 방식도 한꺼번에 볼수있다
+
+네이버에서 아파치 검색!!
+
+http://httpd.apache.org/
+
+-> download -> archive download site
+-> Parent Directory   클릭
+-> cotrl + f 로 tomcat 검색 후 클릭(http://archive.apache.org/dist/tomcat/)
+
+-> tomcat-8/  클릭
+http://archive.apache.org/dist/tomcat/tomcat-8/
+
+->v8.0.9/  클릭
+http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.9/
+
+-> bin/ 클릭
+http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.9/bin/
+
+-> apache-tomcat-8.0.9-windows-x64.zip  클릭해서 다운(자신의 컴퓨터의 운영체제를 확인하고 다운 받는다)
+
+
+
+-->> 이클립스를 새로하나 설치한다
+주의!!!! 기존의 이클립스 폴더를 덮어쓰기하면 큰일난다!!! 다없어지는 것!!
+--폴더명을 다르게하여 전혀다른 이클립스를 하나더 설치하는 것이다
+
+
+>>학원 컴퓨터내에서
+(폴더명)eclipse-jee-2018-12-R-win32-x86_64
+-- 이것은 화면단 연습전용 이클립스다
+
+(폴더명)eclipse 은 
+-- 이것은 자바 연습 전용 이클립스다
+
+
+
+
+
+
+
+
+< 다른 검색방법 >
+>> 이방법은 지금 많이 쓰는것 검색가능
+
+네이버에 아파치 톰캣이라고 검색!
+
+http://tomcat.apache.org/ 로 클릭
+
+Download -> tomcat8 ->  Archives (로 가면 옛날버전 다운로드 가능: 회사에서 쓰는 버전을 받아야한다)
+
+
+
+
+
+
+
+1. 자바설치 1순위!!!
+2. 이클립스 설치 2순위
+3. 톰캣 3순위
+
+
+
+<화면단 전용 이클립스>
+
+
+
+
+(폴더명)eclipse-jee-2018-12-R-win32-x86_64 클릭하여
+폴더명 eclipse를 eclipseweb으로 바꾸고 
+이것을 잘라내기하여 c드라이브에 붙여넣기
+
+eclipseweb폴더를 클릭하여
+eclipse.exe 를 이름바꾸기 -> eclipse.exe으로
+그리고 이것 마우스 우클릭해서 바로가기만들어서 바로가기 이름을  바탕화면에 추가 한다
+
+바로가기의 이름을 기존것과 구분되도록 eclipseWeb.exe 로 바꿔준다
+
+
+>>eclipse.exe 클릭해서 실행
+>>eclipse platform launcher에서 
+workspace:            지정 단계에 오면
+>>browse 눌러 c 드라이브에서 새폴더를 만든다
+새폴더 명은 workspaceWeb 이라고 만든다
+(기존에 c드라이브에있는 workspace는 자바연습용이니깐 이것을 선택해서는 안된다!)
+
+>>workspaceWeb폴더 선택하고
+C:\workspaceWeb 임을 확인하고 launch 누름
+
+
+
+
+
+>>apache-tomcat zip 파일 잘라내기하여
+c드라이브에 붙여넣기
+>> 이 집파일 폴더명 압축풀기하기
+apache-tomcat-8.0.9-windows-x64
+
+>> 위폴더 클릭하여 apache-tomcat-8.0.9 폴더 복사하여 workspaceWeb에 붙여넣기 하라
+
+
+
+현재위치 : C:\workspaceWeb
+
+우리는 회사에서 꼭 최신기술을 사용하지 않을수 있으므로 폴더네 - 를 마이너스 연산자로 인식할수 있으므로
+>>apache-tomcat-8.0.9 폴더명을
+tomcat8 로 폴더명을 바꿔준다
+
+
+>>eclipseWeb.exe 바로가기를 실행시키면
+뜨면 JAVA EE 환경인지 확인
+
+
+< 이클립스 설정 >
+
+window - preference
+
+general -> show heap staus 체크
+
+general -> workspace -> text file encoding -> other -> utf-8 선택하고 어플라이
+
+general ->content types -> text 클릭 -> java sourse file 선택하고
+
+밑에 default encoding: 에 UTF-8을 타이핑해서 적어준다 -> update 클릭!!!
+
+general -> editors -> text editors -> colors and fonts 클릭 -> 글자크기 설정 (난 16)
+
+
+
+
+
+>> 이클립스 java ee 에서
+>>밑의 servers 클릭 하면
+no servers are avialable 클릭
+>> define a new server에가서 Apache 선택 tomcat 8.0선택 -> browse 클릭 -> tomcat8폴더 선택
+C:\workspaceWeb\tomcat8 이 경로로됨을 확인해라!
+JRE:           에 jdk8을 선택 -> next -> finish
+하면 servers에 경로가 생김을 확인가능
+
+
+new - other - web- dynamic web project 선택하면
+dynamic web porject 생성가능
+
+HelloHtml이라 프로젝트명하고
+이것을 클릭 -> webcontent
+
+
+오류뜨면
+>servers에 밑에 톰캣 누르고
+>ports 클릭
+>html 옆에 번호를 8090 하고 ctrl+s 하여 저장
+
+
+
+
+!!!중요!!!!!
+< 혹시 이클립스 환경이 이상해서 삭제하고 다시 설치하고 싶다면!!!>
+
+1> eclipseWeb 폴더 전체를 지우고
+2> workspaceWeb폴더안 metadata 폴더도 삭제한다
+
+그후 다시 처음부터 이클립스 설치한다
+(metadate 엄청 중요한것! 내 스타일대로 플러그인설치 글꼴바꾸기 한등등이 저장된다)
+
+
+
+
+
+< jdk 설정이 잘못되어있다면?>
+preference 가서 java build path 설정에 jdk8 설정을 다시해준다
+
+
+
+
+< apache 재단 >
+홈페이지에서 사용가능한 다양한 기능을 구현해놓았다
+
+톰캣
+
+WAS
+Web Application Server
+
+Web server + Application sever + service
+
+
+
+
+
+
+
+
+
+>> servers
+밑의 것을 삭제하기전에 실행되는 것을 다 정지시킨다(발간 네모 클릭)
+
+
+>>왼편의 servers폴더 마우스 우클릭 삭제
+contents도 같이 삭제
+
+
+이클립스 전체에 공통으로 설정s
+window- preference
+- server - runtime environments - add (서버를 실행하는 환경을 등록하려는것) - apache- apache tomcat v8.0선택 - apply and close
+
+>>밑의 서버가서 파란글씨 클릭
+
+
+
+
+
+
+
+
+
+
+
+< new dynamic web project >
+캡쳐 1, 2 ,3번
+
+
+
+Context root : HelloHtml
+>>컨텍스트에서 루트, 즉 가장 최상위 부모라는 것
+이 위로는 파일의 접근이 불가능 하다는 것
+
+Content directory: WebContent
+>>내용과 관련된 부분은 이 디렉토리에서 관리하겠다
+
+확인 캡처 4번
+
+
+
+이클립스 왼쪽 webcontents 폴더에서 화면에 관련된 모든것을 앞으로 만들게됨
+>>webcontents 폴더 우클릭 - new - html file 만들기
+
+
+
+< 이 오류가 계속 뜬다면? >
+Port 8080 required by Tomcat v8.0 Server at localhost(내 컴퓨터 주소) is already in use.
+오라클을 이미 설치해서 8080포트를 사용하고 있어서 그런 것.
+ The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).
+
+>>해결하려면?
+서버의 포트 번호를 바꾸자
+>>서버및의 톰캣클릭 - ports 가서 http 포트번호 바꾸는건 하나씩 바꾸는것
+>>전체 설정 바꾸려면 > 캡처 5번
+왼쪽 서버폴더 열어서 server.xml 클릭 -> source 가서
+port 찾아 "8090" 으로 변경하고 저장하면
+앞으로 전체설정이 된것
+
+
+
+
+>>hello.html 에서 커서가 깜빡거릴때 
+거기서 ctrl + f11 실행하면 화면 구현됨을 확인가능
+
+또는
+
+>>프로젝트 실행시킬려면
+프로젝트명 왼편 폴더 클릭 - 우클릭 - run as - run on server - 캡처 6,7 번
+
+>>http://localhost:8090/HelloHtml/에
+http://localhost:8090/HelloHtml/hello.html 붙여서 실행하면 화면구현됨을 확인할수 있다
+
+
+우리는 테스트할때 
+브라우저를 사용한다
+> 익스플로어 크롬 사파리 등등
+
+
+설정(캡처 8번)
+general - web browser 
+> use external web browser
+>chrome 선택 
+하면 이제 실행시키면 크롬에서 뜬다
+
+
+
+>>서버종료 - 빨간 네모 클릭
+
+
+> 단축키: ctrl + L : 라인 넘버로 찾아가기
+
+
+이제부터 뭔가를만들떄는 
+>왼편 webcontent 폴더 아래에서 만드는것!!!
+에서 마우스 우클릭 - new - hteml 
+>> HtmlBasic을 이름으로 하고 next 하고
+캡처 9번처럼하고(4.0 transitional) finish
+
+
+>> 우리의 교과서!!!!
+https://www.w3schools.com/
+즐겨찾기에 추가!
+>>가서 html reference로 가서 html4 옛날버젼을 배우러 가자 그래야 기본을 알수있음
+
+
+
+
+
+
+
+<글자> 태그 - 뾰족한 괄호를 태그라고한다
+태그는 html의 최소단위
+
+태그명
+<글자> 태그 : 글자 태그
+<html> html 태그
+
+<meta> : 문서의 설명, 키워드, 저자 등을 지정
+-를 보면 어떻게 구성되어있는지를 알수있다
+
+<title>: 문서의 제목 지정
+-아 브라우저에 뜨는 글자가 이거구나
+
+도큐먼트들이 html이구나~~~(뭔말이야)
+
+
+DTD 선언
+(Document Type Definition)
+>> 이것때문에 글자가 문법이 되는것
+
+
+<br> 태그: 다음 줄로 넘어가게 만듬
+
+
+
+
+https://www.w3schools.com/html/html_intro.asp
+>>캡처 10번 - 기본적 html document에 대한 설명
+
+The <!DOCTYPE html> declaration defines this document to be HTML5
+
+The <html> element is the root element of an HTML page
+
+The <head> element contains meta information about the document
+
+The <title> element specifies a title for the document
+
+The <body> element contains the visible page content
+- 눈에 보이는 모든것들이 작성되어지는 곳
+The <h1> element defines a large heading
+
+The <p> element defines a paragraph
+
+>>(순서!) head 오고 body 나온다 
+
+
+
+
+
+실기!>
+자기소개 홈페이지를 만드시오
+4.01 dtd로 만들어라
+
+프로젝트명: MyIntroduce
+파일명: index.html
+
+4줄 정도 작성하시오
+
+
+>> 개발자는 jsp파일을 다룬다!!!
+new - jsp file (캡처 11번) - 4.0 템플릿 클릭
+>> UTF-8로 바꿔준다 (캡처 12번)
+>> 가독성을위해 수작업으로 정렬해야한다!!!
+
+예
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>블록 요소</h1>
+		<h2>블록 요소</h2>
+		<p>앞뒤로 줄 바꿈이 생긴다</p>
+	</body>
+</html>
+
+
+
+예2)
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>인라인 요소</h1>
+		<h2>인라인 요소 성질</h2>
+		<strong>인라인 요소는 한 줄로 출력된다</strong>
+		<a href="#">인라인 요소 링크</a>
+	</body>
+</html>
+
+
+
+
+
+
+블록요소(Block Element)
+BlockTag.jsp
+1. 줄 바꿈이 일어난다
+2. 블록 요소 안에는 텍스트(문자)와 
+인라인 요소를 포함할 수 있다
+3. 블록 요소 안에는 블록 요소가 포함될 수 있지만,
+  경우에 따라 포함될수 없는 요소도 있다.
+
+
+
+인라인 태그(Inline Tag)
+1. 줄 바꿈이 일어나지 않는다
+2. 인라인 요소 안에는 텍스트(문자)와 
+ 인라인 요소를 포함할 수 있다.
+3. (중요!)인라인 요소는 블록 요소를 포함할 수 없다
+4. (필수조건)인라인 요소와 텍스트는 블록 요소 안에 포함되어야 한다.
+
+>>인라인 요소가 코드의 최소단위이다
+>>나중에 블록이 부모고 인라인이 자식이 된다
+
+
+
+[기본적인 태그의 형태]
+
+<시작태그>텍스트</종료태그>
+
+
+
+
+<h1>하이라이트 태그</h1>
+<p>이게 p태그다 앞뒤로 줄 바꿈이  생긴다</p>
+<br> : 줄바꿈 태그 (블록요소 아님)
+<hr /> : horizontal 수평선이 생김
+
+
+>>일일히 설정하고 탭하고 귀찮으니 새롭게 설정한다
+>>새로운 jsp templete을 만들었다
+MyNew JSP File ver1
+캡처 13~16번 봐라
+utf-8 설정
+
+
+
+>> 코드에 대한 인코딩도 해야함
+css, html, java source, jsp, java properties
+모두 UTF-8로 업데이트해야함
+캡처 17, 18번
+
+
+>>the server may need be restared
+서버의 재시작 화면이 뜨는 경우
+폴더의 구성이 변화했을 때, 
+새로운 파일이 추가되어서 실행하려고 하는 경우
+
+(서버라는건 내렸다가 다시올려야 변화를 감지하고 새로추가된 파일을 인식할수 있기때문)
+
+
+
+
+>> http://icoxpublish.com/bbs/board.php?bo_table=03_board&wr_id=3&sfl=wr_subject&stx=%EB%B0%98%EC%9D%91%ED%98%95&sop=and
+가서 사용할 파일 다운로드
+
+
+
+
+경로 : 
+주소 : 인터넷상에서 위치를 찾아갈수 있는 것
+
+[도메인 언어] :localhost로 되어있는
+http://localhost:8090/HelloHtml/BlockTag.jsp 		를 분석해보자
+http://192.168.0.62:8090/HelloHtml/BlockTag.jsp 	해도 위와 같은 결과 뜸
+http://127.0.0.1:8090/HelloHtml/BlockTag.jsp  		<- 실제 localhost 주소
+	
+-http:// 통신규약이라 무조건 존재, 고정된 것
+
+
+-localhost : 나의 주소 == 192.168.0.62 (이건 항상 바뀔수있는 주소)
+--localhost의 실제주소 127.0.0.1
+(cmd 에서 ipconfig 치면 ipv4주소 확인가능)
+
+:8090 <- 포트번호
+
+/ -> root 의 시작 (루트표시) : 최상위 표시를 할때 슬래시를 적는다
+
+/HelloHtml/BlockTag.jsp
+
+
+:포트번호 이후에 -> /프로젝트명 이 온다 -> 그다음 파일명 확장자까지
+:8090                    /HelloHtml		/BlockTag.jsp
+
+
+아이패드에 주소적기 실습한것 있음
+
+
+
+
+
+서버단   // 화면단
+자바   COMPILER -> class -> 실행
+html, css, javascript      INTERPRITER  -> 실행
+
+
+
+-컴파일러는 처음부터  끝까지 읽지만 실행하진않고 분석해서 오류를 표시해줌
+하나라도 틀리면 절대 실행되지 않음
+
+-인터프리터는 한자한자 바로 실행한다 
+오류 따위는 잡을수가 없다
+속도가 엄청 빠르다
+오류가 나도 잡기가 힘들다
+디버깅도 존재하지 않는다
+오류만 제외하고 실행되므로
+>> 그래서 경로만 같다면 
+ctrl + f11 해서 일일히 실행시킬 필요없이
+그저 저장만 했다면 f5키로 새로고침하면 그냥 바로 반영된다(인터프리터의 막강함!!)
+
+
+이건 오류다!!!
+<p> <strong> 단락 </p> </strong>        X 틀린것
+<p> <strong> 단락 </strong> </p>           O 맞는것
+<p> <strong> 단락 </strong> 을 사용함 </p>       O 맞는것 
+-> 단락 (만 스트롱으로  강조된것)
+
+오류가 나도 실행이되는건 인터프리터가 묵시적으로 실행시켜주기 때문이다
+
+
+
+  
+-인라인 요소는 부모코드를 벗어나서 작성할수 없다
+
+
+
+
+
+>>ImageTag했을때 실행시켰을떄 깨진이미지가 보이는 걸 확인하고
+이미지를 복사하여 WebContent 폴더에 붙여넣기하고
+image라는 코드를 삭제하고 다시 실행시키면 제대로 실행된다
+
+
+
+[이미지에 대한 표현식]
+웹 문서에 이미지를 불러오는 태그가 img태그다
+인라인 요소의 특징을 가진다
+<img src="icox_logo.gif" width="100" 	height="58" alt="아이콕스" />
+
+멀티태그 < -> 단일태그 (스스로 혼자서 살아남음)
+
+멀티태그 - 보통 다 한쌍으로
+단일태그 - 스스로 혼자 살아남음
+
+
+<img          /> 단일태그
+-   /> 이것이 끝을 알려주는 것
+
+<br          />   단일태그
+
+
+<img src="이미지 파일명" width="가로 길이"
+ 	height="세로 길이" alt="대체 텍스트" />
+
+>>이미지 크기 조절이 자유로우나 이미지 크기를 키우게되면 해상도가 떨어지게 된다
+
+>>alt 대체 텍스트: 이미지가 존재하지않을때 이미지대신 알려주는 대체 테스트 
+>>alt가 없으면 이미지가 없는, 깨진 상태로 나온다
+
+>><img src = : 이미지의 경로를 알려준다
+
+
+[경로]
+두가지 의미
+
+1. 절대 경로  
+ex) C:\Java\jdk8
+유일하다 무조건 그곳이다 / 주소
+
+2. 상대 경로
+ex) ./
+상대적, 절대적 X, 가변한다
+누군가의 입장, 즉 관찰자의 위치에 따라 상대적 경로가 달라진다
+자신이 어디에 위치하는지 알고 그 다음 필요한 경로를 찾아가야 한다
+
+C:\Java
+\jdk8
+
+C:
+\Java\jdk8
+
+캡처 19번
+<img src="C:\workspaceWeb\HelloHtml\WebContent\icox_logo.gif" width="200" 
+		height="58" alt="아이콕스" />
+절대 경로를 설정해도 오류가 난다
+왜? 경로의 주소는 아주 중요함으로 보안이슈 때문에 차단해 두었다
+
+
+
+<img src="./icox_logo.gif" width="200" 
+		height="58" alt="아이콕스" />
+>>위와 차이점 ./  (나자신이 있는 폴더 즉, ImageTag가 있는 폴더(코드를적는위치)에 icox_logo.gif 파일이 같이 존재한다는 의미)
+
+
+
+
+<img src="./resource/icox_logo2.gif" width="100" 
+		height="200" alt="아이콕스" />
+>>위와 차이점 
+(나자신이 있는 폴더에서 resource라는 폴더로 내려가서 icox_logo2.gif를 넣은것)
+
+path(경로): /HelloHtml/WebContent/resource/icox_logo2.gif
+<- 상대경로로 적혀있는 것
+
+절대경로는 왠만해선 사용하지않는다
+
+
+!!중요!!!!
+.      현재위치 (나자신이 존재하는 폴더)
+/      폴더표시   or root(최상위폴더를 지칭하는 의미도 가짐)
+
+\: 마이크로 소프트에서 폴더표시(명령어인지 폴더명인지 구분자로서 존재)
+맥이나 리눅스에서는 / 이 폴더표시
+
+
+C:\Users\TJ>cd
+C:\Users\TJ
+
+C:\Users\TJ>cd..
+
+C:\Users>cd TJ
+
+C:\Users\TJ>cd..
+
+C:\Users>cd..
+
+C:\>cd Users\TJ
+
+C:\Users\TJ>cd\     <- 한방에 최상의 위치로 간다
+
+C:\>
+
+C:\>cd Users\TJ
+
+C:\Users\TJ>
+
+C:\Users\TJ>cd \Java
+
+C:\Java>
+
+
+
+../       나의 위치에서 상위로 올라가려면
+
+
+resource 라는 폴더를 WebContent폴더 아래만듬
+resource\icox_logo2.gif
+
+
+
+실습)
+HelloHtml 에서
+오늘의 날짜를 강조표시하고
+구분선으로 구분한 다음
+이미지 2개를 불러오시오
+
+view 폴더안에 파일명은 imageTest.jsp
+
+불러올 이미지 경로는 WebContent에 icox_logo.gif
+크기는 정사각형으로 50
+
+and WebContent\images 폴더에 map.jpg (1-10폴더안에 있음)
+를 보여주는데, 가로, 세로 100, 200
+
+
+
+
+
+
+어트리뷰트            속성
+attribute 		
+
+속성 : 보라색으로 표기되는 모든것(src, width, height, alt .. etc)
+
+
+[image tag에 대한 정보] - attributes 확인해봐라
+https://www.w3schools.com/tags/tag_img.asp
+
+
+캐싱, 캐시 - 이미지를 빠르게 불러오기위해 브라우저자체에서 기록을 저장한다
+>>지우려면 ? > 크롬 -설정 - 고급
+
+
+브라우저마다 코드를 해석하는것이 다르다
+
+
+단위 

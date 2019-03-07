@@ -1,0 +1,26 @@
+notepad : 메모장의 명령어
+
+
+name: MyNew JSP File ver1 (html 4.01)
+
+description : JSP with html 4.01 markup 수정함
+
+
+pattern : 
+
+<%@ page language="java" contentType="text/html; charset=${encoding}"
+    pageEncoding="${encoding}"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}">
+<title>Insert title here</title>
+</head>
+<body>
+${cursor}
+</body>
+</html>
+
+
+context: new jsp 기억하자
+automatically insert 기억

@@ -1,0 +1,111 @@
+3일차 강의 
+
+시스템 패키지 이행
+github -> 협력  (시험내용!!!)
+
+회사입사시 사용하는 방법
+cvs, svn, git -> 파일 형상 관리 시스템
+
+내 깃허브
+hyemijung
+hyemijung84@gmail.com
+
+
+이클립스 단축키
+라인복사
+ctrl + alt + 화살표 위 orsy 아래: 라이 복사
+
+
+역슬래시는 문자열을 쓰기위한것
+
+오류발생시 - 일단 주석처리로 해결하고 넘어간다
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+
+
+깃허브
+원격저장소
+gitRepository
+
+git
+
+notepad++
+
+tortoisegit (name: hyemijung84, email: hyemijung84@gmail.com)
+
+
+
+
+git 엔딩처리
+\n
+\n\r
+
+
+romote 원격 
+local 지역(나의 저장소) 
+
+
+개발자라면 파일 확장자명이 보이게 셋팅
+탐색기- 보기 - 파일 확장명에 체크
+
+
+www.gitignore.io 사이트로 가서
+windows, Eclipce, Java (관리하지 않아도 될 목록 검색) 을 검색
+
+.gitignore 파일을 c 드라이버에 gitignore 폴더에 넣어둔다
+
+
+
+window + R
+regedit (레지스트리 편집기) -잘못건들면 포멧해야함
+
+
+컴퓨터\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers
+에서 Tortoise 어쩌고저쩌고 폴더들이 제일 상단부터 위치하도록해야함
+
+f2 : 이름바꾸기 
+
+폴더 제목 앞에 공백이 있으면 우선순위
+폴더 제목 만들시 숫자가 문자보다 우선순위
+
+
+이클립스에서 작업한 파일들을 .metadate를 제외하고 복사하여 gitRepository 폴더에 붙여넣기한다
+
+gitRepository 는 로컬 저장소다
+(.git 이 저장소임을 보여줌)
+
+
+<github desktop에서>
+commit 저지른다?
+메시지 제목
+상세설명 
+
+상세설명에 - 파일 관리 예외 대상 git ignore 파일 추가(적고 누른다)
+history tab에서 확인가능(아이패드 사진찍어둠)
+
+꼭 .gitignore을 먼저 넣고 
+
+
+제목: 이클립스 workspace 프로젝트 생성
+챕터 2 변수 부분
+
+<github 사이트에서>
+만약 새로 내용이 추가되었다면 어쩌죠?
+
+그럼 pull 입니다.
+
+동기화 - Pull Origin
+
+무조건 UTF-8로 해야 pull 했을때 이클립스에서 깨지지않음
+
+
+샘 깃허브주소 - 카톡에 올려주심
+
+
+
+f2 이름바꾸기
+
+
+자원 세어나간다
+Resource leack
+
+스캐너는 알긴알되 나중에 안쓴다 연연하지 말자

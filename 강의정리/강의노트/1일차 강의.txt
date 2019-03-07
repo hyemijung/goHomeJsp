@@ -1,0 +1,203 @@
+Client 사용자    , server 서비스 = 호스트
+
+widow + R : 실행
+cmd 입력 - 커멘드 창 실행 (검은배경색)
+inconfig -> IPV4: 주소
+               기본게이트웨이
+
+로컬 local    -    리모트 remote
+  내위치                서버
+
+
+개발자라면 - 생성, 수정, 삭제 이 3가지를 완벽히 할수있어야한다.
+
+
+[ 자바 언어를 통해 개발하기 위한 방법>
+운영체계에 맞춰 프로그램 다운로드할것 (32, 64비트) - 항상 확인!!!!
+자바, 이클립스
+jdk (java development kit) - 개발자용
+프로그램 설치위치는 C:\java\jdk8  (프로그램 설치위치를 나타냄)
+
+명령어를 구분하는 용도로 : 공백을 사용한다
+
+jre (java runtime enviroment) - 실행, 사용자용 (개발자가 개발한것이 잘되는지 확인할때도)
+
+다운로드 설치 증명 -> 실행 -> cmd ->
+아래를 입력하여 확인
+	java -version (jre 설치확인)
+	javac -version (jdk 설치확인)
+                (java 옆의 c 의 의미는 compile (사용자의 언어))  
+
+윈도우키 + Pause Break 하면 시스템설정으로 이동
+(제어판- 고급시스템 설정 - 시스템 속성 - 환경변수 로들어가)
+
+시스템 변수에서 새로만들기 클릭
+
+JAVA_HOME 입력하여 새로만듬
+이것을 클릭하면 변수 값이 나옴 C:\java\jdk8 
+
+(환경변수를 등록하지않으면 cmd에서 javac를 입력해서 나오지 않음)
+
+제어판- 고급시스템 설정 - 시스템 속성 - 환경변수 로들어가
+
+ path 를 클릭한후 새로만들기 
+%JAVA_HOME%\bin 을  만든다 이후 이것을 최상위에 위치하도록 이동시킴(빠른 개발을 위한 습관)
+path 클릭한후 텍스트편집을 클릭하면 변수값이 나옴
+
+
+변수값이 아래와 같이 확인이 가능하다
+%JAVA_HOME%\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files (x86)\Autodesk\Backburner\;
+
+환경변수에 등록한다면 어디서든 javac 개발이 가능하도록 도와준다.
+
+; 세미콜론은 구분된다는 뜻 (공백 역시 구분한다는 뜻이므로 함부로 띄어써서는 안된다
+
+
+
+이클립스 다운로드 (eclipse.org)
+개발자들은 수동으로 설치한다
+이말은 exe 를 다운받으면 안된다.
+
+Eclipse IDE for Enterprise Java Developers 버전을 다운받아야 한다.
+window 64비트 클릭
+ eclipse-jee-2018-12-R-win32-x86_64.zip 형식의 집파일을 다운받는다.
+
+너무 많은 사람이 한꺼번에 접속해서 다운로드 받는 중이면  다운로드 지연된다
+이때는 뒤로가 mirror로 들어가 다른 국가를 설정하여 다운한다.
+
+
+해결방법 능력을 길러야한다. 다외울수 없으므로
+검색할수 있는 용어를 알아야한다.
+
+
+
+숙제 (월요일까지)
+자바설치
+이클립스를 통해 실행 (자신의 컴퓨터에 공부를 할수있는 환경을 만들것)
+
+
+반디집(무료압축프로그램) - 
+개발자는 사용통계및 오류보고서 자동설치를 하지않는다(속도에 영향 주므로)
+
+C:\Users\TJ\eclipse-workspace 를
+C:\workspace 로 줄이고 launch 한다. (이클립스를 여는것)
+
+
+
+file - new- other - java project
+porject name : HelloProject (영어의 대소문자를 구분하라 둘은 전혀다른 것)
+
+
+window - preference - general - editors - text editors - color and font - Text Font - edit - 원하는 세팅값을 선택 - apply
+
+
+제일 상단 file- new -java project (프로젝트 이름을 적는다)
+
+프로젝트 우클릭 - new - class 만들기 - default package 마우스 우클릭 - new - java project
+project name: hello2 입력
+JRE셋팅 - use project specific JRE: jdk8 선택
+project layout 은 건들지 않는다
+ 
+프로젝트를 만든후 class를 만들고 싶을때
+프로젝트 네임 우클릭 - new - class - class 이름을 설정하고 - 꼭 체크! (public static void main)
+
+public static void main 을 체크하지않고 클래스를 만들었을때 어떻게 수정하나?
+{  } 괄호 안에서 ctrl + space 실행시킨후 스크롤을 내리면 main - main method 를 클릭하면 된다
+
+ctrl + space 자동완성 (꼭 알아야)
+
+
+bin - binary 2진수라는 뜻
+
+ 
+c 드라이브 - workspace 작업장이라는  뜻 (이곳에서 작업이 이루어짐)
+.matadate 는 건들지 말아라(지우면 했던것 다 날아감)
+
+이클립스에서 Hello2를 새프로젝트로 만들려고하면 이미 존재한다고 뜬다.
+
+Hello2 - delete - delete project contents on disk(cannot be undone)
+를 체크하고 지우면 c드라이브에서도 완전히 지워지는것
+
+
+프로젝트명: Myintroduce
+class 파일 만든 -> introduce.java 파일
+짝의 이름
+짝의 나이
+
+{ } 괄호 안에 System.out.println("출력을 원하는 글자");
+하면 결과값이 뜬다
+큰따옴표 없으면 실행되지 않음- 큰 따옴표 안의 글자만 출력됨
+project name 을 작성할때 - 공백(띄워쓰기)하면 안됨
+
+System.out.println("윤태경");
+System.out.println("29");
+
+
+
+src = source 
+class 는 src에 다들어가있음 src가 class를 관리한다
+
+// 주석(comment) 은 코드의 실행과 관계없이 설명을 돕는 것일뿐 (아주 중요)
+클래스명은 파일명과 무조건 일치해야한다 (대소문자도 명확히 일치해야한다)
+파일명을 바꾸면 오른쪽 코드를 적는 곳은 자동으로 바뀐다
+
+파일명 우클릭- refactor - rename
+F2누르면 이름 바꿀수있음
+
+
+
+ctrl _ space 자동완성 (꼭 알아야)
+
+main 은 class 안에 만든다
+{ } 을 블럭이라고 부른다 - 블럭안이 영역의 표시라고 보면된다
+최초의 main은 하나뿐이다.
+
+
+print 와 println 의 차이점
+println 의 ln 은 line을 의미한다 (줄이 바꿔지는것)
+
+
+과제
+자바 설치 
+월요일 까지
+이클립스를 통해 실행
+
+을 사진찍고 
+
+저 정혜미인데요
+다행히 이클립스 설치하고 잘 실행했습니다.
+와 같은 짧은 안부인사말을 출력하여 가져온다.
+
+<파일질라 다운로드 하는 방법>
+호스트 192.168.0.57
+
+파일밑의 서버세개 그림클릭 - 사이트 관리자 - 새사이트 눌러 만들기(하이브리드서버) - 비밀번호묻기
+
+파일을 열고 - 로컬사이트에서 바탕화면 클릭 하고- 아래창에 끌어다 놓거나 받고자하는 파일 우클릭하고 다운로드 한다.
+
+안되면 검색해서 해결방법을 찾아본다.
+
+
+
+jdk8에 있지않다면 어떻게?
+클래스선택 - window - preference
+jre home - dirctory - c 드라이브 - 자바 - jdk8폴더 선택 - finish - apply and close
+
+
+자바 사이트- java se 선택- 가장 아래에 위치한 java archive 다운(이전 버전의 자바를 받을수 있다)
+
+이클립스도 버전이 존재한다
+버전이 다르면 플러그인에서 문제가 생길가능성이 있다
+
+이클립스 홈피- 다운로드 - 다운로드 패키지- eclipse mars - eclipse IDE for java EE developers 다운
+
+
+내가 다운받을 것은 enterprise 버젼
+
+
+
+// 한줄주석 -주석을 걸면 초록색으로 변화함 코드에 영향을 미치지않음
+단축키 : ctrl + /
+
+/* 범위주석       */ 
+단축키 : ctrl + shift + / , 제거 : ctrl + shift + 역슬래쉬

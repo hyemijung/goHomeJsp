@@ -1,0 +1,104 @@
+14일차 강의
+
+<오라클은 자바 기반이므로>
+1. 자바 (먼저 다운받아야함)
+jre
+jdk
+
+2.db 다운
+
+slqplus
+account : system
+password : 내꺼 입력
+이 들어가면 설치가 제대로 잘된것임을 확인
+
+
+
+
+
+
+오라클 - 개발자 - 데이터베이스 -
+Database 11g Express Edition(교육용) 다운로드
+
+Prior Release Archive
+
+Oracle Database Express Edition (XE) Release 11.2.0.2.0 (11gR2).
+다운받기
+
+실제로 회사에서 사용하는 것은
+Database Enterprise/Standard Editions
+
+
+Database 11g Express Edition
+g: gird
+
+
+
+
+
+
+<다운잘됬는지 확인>
+cmd - 
+C:\Users\TJ>sqlplus 입력
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 1월 10 18:30:37 2019
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> show user
+USER is "SYSTEM"
+SQL>
+
+
+
+
+
+
+
+<문제가 생김>
+TNS:destination host unreachable (해결이라고 구글검섹)
+(데이터베이스를 서버라고 부른다, host는 서버)
+
+
+mySQL(공짜), Oracle, SQLserver
+
+
+오라클 계정 만들기
+
+설치의 경로는 : 회사에서 결정됨(메뉴얼을 따라야함)
+
+오라클 비번 : J2829824
+
+
+
+
+
+<데이터베이스의 정의>
+어느 한 조직의 여러 응용 시스템이 공요할 수 있도록
+통합, 저장된 운영 데이터의 집합이다.
+
+>>파일 시스템(옛날방식)
+1) 데이터 종속
+응용 프로그램과 데이터 간의 상호의존 관계를 말한다.
+데이터의 구성이나 접근 방법이 변경되면 응용 프로그램도 같이 변경된다
+
+
+2) 데이터 중복
+한 시스템 내의 데이터가 중복되어 저장, 관리되면 관련된 데이터의 불일치가 발생할 수 있다.
+
+데이터 중복 시 문제점 4가지
+1. 일관성
+여러 개의 데이터가 모두 하나의 사실ㅇ르 나타낸다면 논리적으로 그 내용이 모두 동일하나, 데이터 중복이 있으면 그 동일성을 유지하기가 어렵다. 이것을 데이터의 불일치성, 모순성이라 한다.
+
+2. 보안성
+동일 수준의 보안이 유지되어야 하나, 데이터가 중복되어 있다면 모두
+
+
+
+

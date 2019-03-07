@@ -1,0 +1,50 @@
+8일차
+
+능력단위: 자바 클래스와 객체
+
+The static field Student.ban should be accessed in a static way
+
+
+
+Calc 클래스
+
+-
+*
+/
+
+CalcTest 클래스
+
+
+메서드를 사용할까 말까?
+- 하나의 메서드는 한 가지 기능만 수행하도록 작성하는 것이 좋다
+- 반복적으로 수행되어야 하는 여러 문장을 하나의 메서드로 정의해 놓으면 좋다
+- 관련된 여러 문장을 하나의 메서드로 만들어 놓는 것이 좋다
+
+Unreachable code
+
+
+
+This method must return a result of type int
+This method must return a result of type int
+
+
+
+ctrl + d : 한줄 지우기, 블럭 지우기
+Type mismatch: cannot convert from void to int
+
+
+ObjectEx2
+
+Data
+PritiveParamEx
+
+
+기본형 매개변수와 참조형 매개변수
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+
+
+SELECT PLAYER_NAME, POSITION, BACK_NO, HEIGHT
+FROM PLAYER
+WHERE TEAM_ID IN('K02', 'K07')
+AND POSITION = 'MF';
+
+-- 위의 코드가 무슨 뜻인지 설명하라?
+-- IN을 사용하지않고 같은 결과 되도록 만들어라
+
+--팀 삼성블루윙즈와 전남 드래곤즈 두팀의 선수들 중에 포지션이 미드필더인 선수들의 플레이어 네임, 포지션, 백넘버, 키를 모두 조회하시오
+
+SELECT PLAYER_NAME, POSITION, BACK_NO, HEIGHT
+FROM PLAYER
+WHERE (TEAM_ID = 'K02' OR TEAM_ID= 'K07')         
+AND POSITION ='MF';                                                
+-- 괄호가 없으면 찾는 순서가 완전히 바뀐다 
+
+
+
+--< rownum >
+
+
+SELECT *
+FROM EMP
+WHERE ROWNUM = 1;
+
+--위와 같은 결과 - 하지만 아래는 정확한 넘버를 모르면 조회할수 없다
+SELECT *
+FROM EMP
+WHERE empno = 7369;
+
+
+!!!!시험
+-- 5줄 가져오기
+SELECT *
+FROM EMP
+WHERE ROWNUM <= 5;
+
+
+SELECT *
+FROM EMP
+WHERE ROWNUM <= 10+1;               -- 가능하지만 11로 적는게 낫다 의미없음
+
+
+-- 선수테이블에서 40명만 볼수있도록 조회하시오
+SELECT *
+FROM PLAYER
+WHERE ROWNUM <= 40;
+
+
+
+

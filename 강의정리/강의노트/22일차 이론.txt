@@ -1,0 +1,296 @@
+22일차 이론
+
+!!!시험!!!
+< ROWNUM >
+(오라클에서만 존재하는 단어) 
+가상컬럼 이다라고 인식하라
+
+오라클에서 rownum은  컬럼과 비슷한 성격의 preudeo Column으로써 sql처리 결과 집합의 각 행에 대해 임시로 부여되는 일련번호이며, 테이블이나 집합에서 원하는 만큼의 행만 가져오고 싶을 때 where 절에서 행의 개수를 제한하는 목적으로 사용한다
+
+
+>> 몇 명까지 볼수있도록 조회하시오 할때 사용됨
+
+
+-- 선수테이블에서 40명만 볼수있도록 조회하시오
+SELECT *
+FROM PLAYER
+WHERE ROWNUM <= 40;
+
+
+
+!!!중요!!
+
+< 내장(기본) 함수(Function) >
+
+-- 절대값
+SELECT -10, ABS(-10)
+FROM DUAL;
+
+
+-- 소수점 아래를 버린다
+SELECT 34.5678, FLOOR(34.5678)
+FROM DUAL;
+
+
+-- 특정 자리수에서 반올림한다
+SELECT 34.5678, ROUND(34.5678)
+FROM DUAL;
+
+
+!!!무조건 알아야!!
+< dual 테이블 >
+가상테이블 
+테스를 하고 활용해보라고 만든 것
+진짜인지 아닌지 이것을 보고 판단하고 적용하라는 것
+
+SELECT 24 * 60
+FROM DUAL;
+
+
+
+
+>>현재 날짜를 데려오는 것
+이걸 모르면 사용자가 언제 접근했는지 알수 없음
+SYSDATE
+
+SELECT SYSDATE
+FROM DUAL;
+
+
+-- 절대값
+SELECT -10, ABS(-10)
+FROM DUAL;
+
+
+-- 소수점 아래를 버린다(무조건 내림)
+SELECT 34.5678, FLOOR(34.5678)
+FROM DUAL;
+
+
+-- 특정 자리수에서 반올림한다
+-- 아무것도 없으면 디폴트 값 0을 붙여주는것 ROUND(34.5678, 0)
+
+SELECT 34.5678, ROUND(34.5678)
+FROM DUAL;
+
+SELECT 34.5678, ROUND(34.5678, 2)
+FROM DUAL;
+
+
+
+SELECT 34.5678, ROUND(34.5678, -1)   -- 마이너스 붙으면 . 기준 왼쪽부터 시작됨 4에서 반올림 된것
+FROM DUAL;
+
+
+-- 특정 자리수에서 잘라내는 함수
+SELECT TRUNC(34.5678,2), TRUNC(34.5678, -1), TRUNC(34.5678)
+FROM DUAL;
+
+
+
+-- 나머지를 구하는 함수
+SELECT MOD(27, 2), MOD(27, 5)
+FROM DUAL;
+
+
+-- 사원 번호가 홀수인 사람들을 검색하시오
+-- 전체검색
+-- 혼자 못품
+
+SELECT *
+FROM EMP
+WHERE MOD(EMPNO, 2) = 1;
+
+-- 홀수이므로 EMPNO를 2로 나누어 나머지 1이인 EMPNO를 검색하는 것 
+
+
+
+
+-- 문자형 데이터의 길이를 구한다
+SELECT LENGTH('SQL Expert')
+FROM DUAL;
+
+
+
+
+-- 문자 더하기
+SELECT CONCAT(1, '축구') 스포츠
+FROM DUAL;
+
+-- CONCAT 대신 ||(수직바)를 통해 주로 해결한다
+
+
+
+
+
+-- 경기장의 지역번호와 전화번호를 합친!!! 번호의 길이를 구하시오
+-- STADIUM_ID        TEL               T_len
+--      D03            063273-1763      11
+-- !!한번에 못품 -- 수직바 사용, 별칭(대소문자구별) 
+
+
+SELECT STADIUM_ID, DDD||TEL AS TEL,  LENGTH(DDD) + LENGTH(TEL) "T_len"
+FROM STADIUM;
+
+-- 이것은 DDD길이와 TEL길이를 따로 구해서 합한것 - TEL 컬럼값 중 NULL 이 있어서 길이값도 NULL,  
+-- 즉 길이값 NULL 과의 연산은 NULL이 되므로 - 결과값이 NULL이 존재
+-- NULL은 무슨짓을 해도 NULL이다
+
+
+SELECT STADIUM_ID, DDD||TEL AS TEL,  LENGTH(DDD||TEL) "T_len"
+FROM STADIUM;
+-- 실제 강사님이 요구하신 답
+-- 이것은 미리 DDD길이와 TEL길이를 합한상태에서 - 길이를 구했으므로, TEL 컬럼값이 NULL 이더라도 지역번호 3개의 길이가 나오는 것
+
+
+
+-- 올림처리 한다
+CEIL : 천장
+
+SELECT ENAME, CEIL(SAL/12)
+FROM EMP;
+
+
+
+
+!!!! 무조건 알아야!!!1
+< date 날짜 >
+
+날짜 데이터에 숫자를 더하면 
+그 날짜로부터 그 기간만큼 날짜를  계산한다
+
+SYDATE + 1 : 내일 날짜
+SYSDATE - 1 : 어제 날짜
+SYSDATE - 2 : 엇그제
+SYSDATE + 2 : 모레
+
+
+
+문제>
+
+-- EXTRACT(YEAR | MONTH | DAY FROM DATE)
+-- 날짜 데이터에서 년 | 월 | 일 데이터를 출력할수 있다
+-- 시분초도 가능
+-- SUBSTR로 데이터 건드는 것이 아니라 이 방법을 써야한다
+SELECT ENAME, HIREDATE 
+        ,EXTRACT(YEAR FROM HIREDATE) AS 입사년도
+        ,EXTRACT(MONTH FROM HIREDATE) AS 입사월
+        ,EXTRACT(DAY FROM HIREDATE) AS 입사일
+        ,EXTRACT(DAY FROM SYSDATE) AS 현재일
+FROM EMP;
+
+
+
+
+SMITH	80/12/17	1980	12	17	22
+ALLEN	81/02/20	1981	2	20	22
+WARD	81/02/22	1981	2	22	22
+JONES	81/04/02	1981	4	2	22
+MARTIN	81/09/28	1981	9	28	22
+BLAKE	81/05/01	1981	5	1	22
+CLARK	81/06/09	1981	6	9	22
+KING	81/11/17	1981	11	17	22
+TURNER	81/09/08	1981	9	8	22
+JAMES	81/12/03	1981	12	3	22
+FORD	81/12/03	1981	12	3	22
+
+위의 것을 
+아래처럼 입사월 입사일 모두 두자리가 출력되도록
+
+
+SMITH	80/12/17	1980	12	17	22
+ALLEN	81/02/20	1981	02	20	22
+WARD	81/02/22	1981	02	22	22
+JONES	81/04/02	1981	04	02	22
+MARTIN	81/09/28	1981	09	28	22
+BLAKE	81/05/01	1981	05	01	22
+CLARK	81/06/09	1981	06	09	22
+KING	81/11/17	1981	11	17	22
+TURNER	81/09/08	1981	09	08	22
+JAMES	81/12/03	1981	12	03	22
+FORD	81/12/03	1981	12	03	22
+
+
+-- !!혼자 못품
+-- LAPD(대상, 채워넣을 갯수, 채워넣을 기호)
+SELECT ENAME, HIREDATE 
+        ,EXTRACT(YEAR FROM HIREDATE)  AS 입사년도
+        ,LPAD (EXTRACT(MONTH FROM HIREDATE), 2, '0') AS 입사월
+        ,LPAD (EXTRACT(DAY FROM HIREDATE), 2, '0') AS 입사일
+        ,EXTRACT(DAY FROM SYSDATE) AS 현재일
+FROM EMP;
+-- 설명 LPAD 를 사용 - 채워넣을 갯수는 2인데 채워넣을 기호는 '0' 을 LPAD 이므로 왼쪽부터 채워나감
+-- 그러므로 입사월이 이미 두자리인 숫자는 채워넣을 갯수 2를 모두 만족하므로 '0'를 넣을수 없고
+-- 입사월이 한자리 숫자인 것은 채워넣을 갯수 2를 만족하기위해 '0'으로 한자리 숫자(월) 왼쪽을 채움
+
+
+
+!!!!무조건 알아야!!!!
+
+< 형변환 함수 >
+
+>>명시적 데이터 변환 : 데이터 형변환 함수로 변환하여 계산한다
+
+>>암시적(묵시적) 데이터 변환: 자동으로 DBMS가 변환해서 계산한다
+
+묵시적 코드를 사용하는 경우에는 성능 저하가 발생할 수 있다
+자동족으로 데이터베이스가 알아서 계산하지 않는 경우가 있어 에러를 발생할 수도 있으므로 명시적인 데이터 형변환을 사용하는 것이 바람직하다
+
+
+TO_CHAR 
+날짜형 혹은 숫자형을 문자형으로 변환한다
+TO_DATE 
+문자형을 날짜형으로 변환한다
+TO_NUMBER
+문자형을 숫자형으로 변환한다
+
+
+[형식]
+TO_CHAR(날짜 데이터, '출력 형식')
+
+출력형식 = 포맷 FORMAT
+
+
+
+
+날짜포맷 형식에 대해서는 전세계가 약속이 되어있음
+
+
+날짜 FORMAT 형식
+
+종류        의미
+YYYY        년도 표현(4자리)
+YY	  년도 표현(2자리)
+MM	  월을 숫자로 표현
+MON	  월을 알파벳으로 표현
+DAY	  요일 표현
+DY	  요일을 약어로 표현
+DD	  일을 표현
+
+
+
+
+AM   OR   PM            오전, 오후 시각 표시
+A.M  OR    P.M	      오전, 오후 시각 표시
+HH    OR   HH12        12시간으로 표현(1~12)
+HH24                       24시간으로 표현(0~23)
+MI		      분 표현
+SS		      초 표현		
+
+
+
+
+
+ DUAL 테이블에서 
+-- 현재시간에서 오후23시를 표현하고,
+-- 현재시간에서 오후23시 뒤에 1시간을 더하면 
+-- 어떤 결과가 나오는지 출력하시오
+--
+-- 출력결과
+-- 현재시간마지막시     다음날최초시간표시
+
+
+
+< 시간을 더하는 공식 >
+
+날짜 + 원하는시간/24 

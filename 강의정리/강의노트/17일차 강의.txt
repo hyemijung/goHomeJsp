@@ -1,0 +1,309 @@
+17일차 강의
+
+>>원반 쌓인 표시
+-에 마우스 갖다대면 저장위치 확인가능
+- 실행시키려면 접속선택이 뜨면서 접속 후에 실행 가능하다
+
+>>SELECT : 조회한다
+
+cmd 실행창
+
+ select * from tab;
+하면 생성된 테이블 볼수있음
+
+
+
+DB에선 대소문자 구분안함
+
+
+
+<테이블 만들때>
+
+SQL DEVELOPER 에서 테이블에 마우스 우클릭 -> 테이블 생성됨
+
+<데이터 유형 - 크기>
+>>>>varchar2(2)
+
+1자만 입력이 가능하다
+
+모호
+
+영문자 숫자 특수기호 1byte
+
+
+
+한글
+
+2byte, 3byte
+
+
+>>한글 1자만 입력이 가능하다 >> VARCHAR2(2)
+
+
+varchar2(4000)
+: 4000이 최고 크기, 4000을 적든지 적당한 크기 넣어준다(4000 byte 라는 의미)
+
+
+
+
+
+>>>number(1) : 자리수 1 : 0 ~ 9, -1 ~ -9
+number(3) : 3의 자리수 정수만 -999 ~ 999
+number : 40자리수 실수?(가능할지??)
+
+number(38) : 직접지정하는건 38까지 가능
+
+number(3, 1) 첫번째 매개변수: 전체길이, 두번째 매개변수: 소수점 이하 자릿수 
+10.1
+10.0
+1.3
+
+number(4, 3)
+1.1
+9.12
+-1.222
+
+
+>>number에 대해 배우자!!
+
+정밀성
+value larger than specified precision allowed for this column
+
+
+>>테이블 삭제는 어떻게?
+DROP TABLE 테이블명;
+
+
+
+< commit 이란? >
+모든 작업을 정상적으로 처리하겠다고 확정하는 명령어
+트랜잭션의 처리 과정을 데이터베이스에 반영하기 위해서 변경된 내용을 모두 영구 저장한다.
+
+
+
+
+
+TCL 
+
+
+< 트랜잭션 이란?>
+
+1. 현금인출을 하겠다고 기계에게 알려준다
+2. 현금카드를 넣어서 본인임을 인증 받는다
+3. 입출할 금액을 선택하면 은행 현금인출기는 돈을 내어준다
+4. 계좌에서 인출된 금액만큼을 잔약에서 차감한다.
+
+>> 트랜잭션의 특징
+4대 특성: 원자성(atomicity), 일관성(consistency), 고립성(isolation), 지속성(durability)
+
+원자성(atomicity): 트랜잭션(하나의 묶음- 절대로 뺄수 없는 업무들을 합친 단위)에서 정의된 연산들은 모두 성공적으로 실행되던지 아니면 전혀 실행되지 않은 상태로 남아 있어야 한다.
+>> all or nothing
+
+일관성(consistency): 트랜잭션이 실행되기 전의 데이터베이스 내용이 잘못되어 있지 않다면 트랜잭션이 실행된 이후에도 데이터베이스 내용에 잘못이 있으면 안된다.
+
+고립성(isolation): 트랜잭션이 실행되는 도중에 다른 트랜잭션의 영향을 받아 잘못된 결과를 만들어서는 안된다.
+
+지속성(durability): 트랜잭션이 성공적으로 수행되면 그 트랜잭션이 갱신한 데이터베이스의 내용은 영구적으로 저장된다.
+
+>>위의 일련의 과정을 DBMS가 해주고 있다.
+우리는 명령어만 치면 된다
+
+
+<트랜잭션 요약>
+: 데이터 처리의 한 단위를 의미한다
+
+
+
+TCL
+commit: 변경된 데이터를 테이블에 영구적으로 반영
+rollback: 변경된 데이터에 문제가 발생! 원래의 데이터로 되돌림(복귀)
+
+>>commit 은 절대 되돌릴수 없음
+
+
+
+
+
+<cmd창> 
+>> commit 하지않으면 영구적으로 저장되지 않음
+
+SQL> create table test(no number, name varchar2(4000));
+
+Table created.
+
+SQL> select *
+  2  from test;
+
+no rows selected
+
+SQL> insert into test values(1,'aa');
+
+1 row created.
+
+SQL> select *
+  2  from test;
+
+        NO
+----------
+NAME
+--------------------------------------------------------------------------------
+         1
+aa
+
+
+SQL> conn system/oracle12;
+Connected.
+SQL> select *
+  2  from test;
+from test
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> show user
+USER is "SYSTEM"
+SQL> conn toto/toto
+Connected.
+SQL> select * from test;
+
+        NO
+----------
+NAME
+--------------------------------------------------------------------------------
+         1
+aa
+
+
+SQL> insert into test values(2, 'bb');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *
+  2  from test;
+
+        NO
+----------
+NAME
+--------------------------------------------------------------------------------
+         1
+aa
+
+         2
+bb
+
+
+>>2개의 데이터를 넣어야지만이 하나의 업무가 끝난다
+(insert 2개가 업무처리의 한 단위라는 뜻)
+데이터베이스에 변화를 일으킨다
+insert into test values( , '');
+
+
+
+<dml 데이터 조작어>
+
+insert
+update
+delete
+
+
+
+<테이블 구조 변경하는 명령어 ALTER>
+ALTER TABLE 명령문
+기존 테이블의 구조를 변경하기 위한 DDL명령문이다.
+테이블에 대한 구조 변경은 컬럼의 추가, 삭제, 컬럼의 타입이나 길이를 변경할 때 사용한다.
+테이블의 구조를 변경하면 기존 데이터에 영향을 주게 된다.
+
+새로운 컬럼 추가하기
+형식
+ALTER TABLE 테이블명
+ADD (컬럼명, 데이터 타입, ...);
+
+
+
+>> COMMIT 한것에 대해선 ROLLBACK 되지않음
+>> DROP TABLE 한것에 대해선 ROLLBACK 되지않음
+
+
+>>다른 사람이 만든 SQL파일을 어떻게 가져오나?
+파일 드래그 OR 파일열기
+
+
+>>cmd 창에서
+>> 강제종료하면?? -> rollback 되고 종료(자료 다날라감)
+>> exit 하면? -> commit 하고 종료된걸로 인식(자료 저장됨)
+
+>>이클립스랑 달라서 f5(스크립트 실행)하면 오류 포함하여 전체 실행이된다
+>>f5 확실하거나 완벽한 경우만 실행한다
+(함부로 누르면 큰일남!!!!)
+
+
+>>문제
+DEPT02 테이블에 문자 타입의 부서장(DMGR) 컬럼을 추가하시오
+문자열 길이는 10
+
+EMP02 테이블에 ADDRESS(주소) 컬럼을 추가하시오
+
+
+
+<기존 컬럼 속성 변경하기>
+테이블에 이미 존재하는 컬럼을 변경하기 위해서
+ALTER TABLE MODIFY문을 사용한다
+
+형식
+ALTER TABLE 테이블명
+MODIFY (컬럼명, 데이터 타입, ...);
+
+컬럼을 변경한다는 것은
+컬럼에 대한 데이터 타입이나 크기, 
+기본값을 변경한다는 의미이다
+
+
+<계정을 새로 만들기 위한 과정>
+DBA 권한을 가진 자만 계정을 만들수있다
+
+## 시스템으로 가서 계정을 만든다
+그리고 연두색 플러스 클릭(하여 접근한다)
+
+새로만들기/데이터베이스 접속 선택 (창이 뜬다)
+
+접속이름: 강사님이 문제를 내주시면 여기 계정에 붙어서 문제를 푼다
+사용자 이름: totoExam (대소문자 구분하지 않음)
+비밀번호: toto
+
+
+>>계정을 만들자
+create user totoExam IDENTIFIED by toto;
+
+>>권한을 주자
+GRANT CONNECT TO totoExam;
+
+>>테이블을 만드는 권한을 주자
+GRANT RESOURcE TO totoExam;
+
+>>계정을 삭제하자!
+drop user totoexam;
+
+>>계정을 언락하자
+create user totoExam IDENTIFIED by toto account unlock;
+
+
+
+>>다른 곳에서 가져오는 파일을 열때
+- 드래그하면? 타입이나 인코딩 방식이 다를때 글씨가 깨지거나 오류발생
+- 가져오려는 파일을 열어 ctrl + a 하여 전부 복사한후 붙여넣는 형식으로 하면 이런 오류를 예방할수 있다
+
+
+>>기존 컬럼 삭제하기
+
+형식
+alter table 테이블명
+DROP COLUMN 컬럼명;
+
+DEPT02 테이블에 DNAME 컬럼을 삭제하시오
+
+<MODIFY

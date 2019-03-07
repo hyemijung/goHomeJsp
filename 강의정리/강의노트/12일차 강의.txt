@@ -1,0 +1,133 @@
+12일차
+
+능력단위: 자바 네트워크와 데이터베이스
+
+ide: 통합 개발
+(Intergration Developer E
+
+help - Eclipse Marketplace
+
+decompiler: 역컴파일러(분석을 위한 것)
+enhanced
+
+enhanced decompiler 설치
+
+
+mars
+jadclipse
+
+
+<이클립스 코드 연동>
+깃허브
+
+
+window - perspective - open perspective - other - git
+
+윈도우키 + d: 바탕화면 보기
+
+C:\gitworkspaces\gitRepository
+
+C:\gitWorkspaces\tgJavaWorkspace로 이름변경
+
+
+자바파일 내용을 변경한것을 이클립스에서 반영할때
+>> 자바프로젝트명에서 우클릭 -> team -> commit(하면 내 local에 올라간다)
+
+
+team -> push 해야 깃허브에 원격으로 등록되는 것
+
+
+샘꺼 변경된거 다시 다운 받으려면?
+받으려는 변경된 프로젝트 마우스 우클릭 -> team -> pull
+
+
+
+<이클립스에서 깃 허브 사용법..>
+Clone a git repository - 깃허브에 존재하는 데이터를 갖고온다
+url에 깃허브 주소 입력 - user id및 password을 입력 - store in secure store  체크후 next 
+browse 에서 C:\gitWorkspaces\tgJavaWorkspace 이렇게 설정후 finish
+하나만 갖고올때 -> Working Tree -> 갖고올 풀더오른쪽 선택 - import project - 체크후  finish 
+전부다 갖고올때 -> Working Tree -> import project  - 체크후 finsh
+
+
+
+
+관계
+
+원안에 좌표
+
+
+
+
+상속관계: ~은 ~이다 (is - a)
+
+포함관계: ~은 ~을 가지고 있다(has - a)
+
+1. 원은 도형이다 - o
+2. 점은 원이다 - x
+
+3. 원은 도형을 가지고 있다 - x
+4. 원은 점을 가지고 있다 - o
+
+
+
+기본은 현실세계!!!!!!
+그 다음이 내 생각!!!!!!개념적, 추상적!!!
+
+
+< 나만의 자동차 만들기 > - 관계를 성정한다
+Car
+
+문
+바퀴
+기어
+
+
+인공지능
+기능
+???님 오늘 하루도 함께 하겠습니다
+
+
+출력결과
+자동차 인스턴스.인공지능 기능(); - 호출하면
+
+???님 오늘 하루도 함께 하겠습니다 - 라고 출력되도록 한다.
+
+
+
+
+Object 
+최상위 객체 -> 조상
+
+계층 관계도
+Object <- Tv <- CaptionTv
+(CaptionTv의 최상위 객체는 Object 이다)
+
+Object <- Card
+
+
+
+<JD decompiler 다운받기>
+http://jd.benow.ca/
+JD-Eclipse
+jd-eclipse-site-1.0.0-RC2.zip 다운받기
+
+이클립스 가서>
+Help -> install newSoftware -> name에 JadClipse라고 작성 -> 다운받은 파일 압축푼 폴더 선택 -> 체크 -> next
+
+
+
+
+<경력이 쌓여 더이상 인터넷 검색으로 정보를 얻기 힘들때 설명서를 원문으로 본다>
+원문을 보면 그 자체 기능에 대해 충실히 알아볼수 있다
+
+도큐먼트 API
+문서 API(Aplicatoin Programming Interface)
+>오라클 홈페이즈 > 개발자 > Java (JDK) for Developers 클릭 > Java resource > Java API Specifications > JAVA STANDARD EDITION > Java SE 8(우리는 이버전 다운받으므로 이거 선택)
+>
+
+
+
+
+public class Object
+Class Object is the root of the class hierarchy. Every class has Object as a superclass. All objects, including arrays, implement the methods of this class.

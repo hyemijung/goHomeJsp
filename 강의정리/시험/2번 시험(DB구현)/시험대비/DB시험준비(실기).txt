@@ -1,0 +1,431 @@
+>>내 계정 확인
+Show user;
+
+>>다른 유저 확인
+Select * from user_users;
+
+>>사용자 계정 만들기
+Create user Scott identified by tiger account unlock;
+
+>>스캇에게 권한 주기위해 시스템 계정으로 접속한다
+Connect system/oracle12
+
+>>스캇에게 권한 주기
+Grant resource, connect
+To Scott;
+
+>>계정 생성: create user 유저명 identified by 비번 account unlock;
+
+>>권한 생성: grant resource, connect to 유저명;
+
+
+>>테이블 만들기
+SQL> create table emp (
+  2  empno number(4,0),
+  3  ename varchar2(10),
+  4  job varchar2(9),
+  5  mgr number(4,0),
+  6  hiredate date,
+  7  sal number(7,2),
+  8  deptno number(2,0)
+  9  );
+
+
+>>테이블 복제(백업) 해서 만들기
+Create table dept02
+As
+Select *
+From dept;
+
+
+>> 테이블 골격 확인
+Desc  테이블명;
+
+>> 생성된 테이블 볼수있는 조작어
+Select * from tab;
+
+>> 테이블 구조 변경하는 명령어 ALTER
+Alter table 명령문
+DDL
+- 컬럼의 추가, 삭제, 컬럼의 타입이나 길이를 변경할때 사용
+- 테이블 구조를 변경하면 기존 데이터에 영향을 주게 된다
+
+>> 새로운 컬럼 추가
+ALTER TABLE  테이블명
+ADD (컬럼명, 데이터 타입, ….)
+
+>> 기존 컬럼 속성 변경하기
+- 테이블에 이미 존재한는 컬럼을 변경
+ALTER TABLE 테이블명
+MODIFY (컬럼명, 데이터 타입, …)
+
+>> 기존 컬럼 삭제하기
+Alter table 테이블명
+Drop column 컬럼명;
+
+>> 기존 컬럼 속성 변경하기
+Alter table 테이블명;
+Modify (컬럼명 데이터 타입, …)
+
+>> 컬럼명 바꾸기
+Alter table 테이블명
+rename column 변경해야 할 컬럼명 to 새로운 컬러명;
+
+>> 테이블명 바꾸기
+Rename 변경 전 테이블명 to  변경 후 테이블명
+
+>> 테이블 내용을 수정 UPDATE문
+업데이트 하나의 단위는 행이다
+
+@전체 행의 내용 변경
+Update 테이블명
+Set 변경하고자 하는 데이터가 있는 컬러명 = value1
+Column2 = value2
+
+@테이블의 특정 행만 변경한다
+Where 컬럼명 = 값( value)
+
+<WHERE문 -> 조건문>
+UPDATE 테이블명
+SET 변경하고자 하는 데이터가 있는 컬럼명 = VALUE1
+COLUMN2 = VALUE2
+WHERE 조건문;
+
+
+예)
+UPDATE DEPT01
+SET DNAME = 'ACCOUNT'
+WHERE DNAME = 'ACCOUNTING';
+(ACCOUNTING을 ACCOUNT 로 변경한 것)
+
+>> 테이블의 불필요한 행을 삭제하는 DELETE
+Delete from 삭제를 원하는 정보가 들어있는 테이블명
+Where 조건절;
+
+
+< 계정을 만드는 방법 >
+
+>>DBA 권한을 가진 system 만이 계정을 만들고 권한을 줄수 있음
+
+>>계정을 만들자
+create user totoExam IDENTIFIED by toto;
+
+>>권한을 주자
+GRANT CONNECT TO totoExam;
+
+>>테이블을 만드는 권한을 주자
+GRANT RESOURcE TO totoExam;
+
+>>계정을 삭제하자!
+drop user totoexam;
+
+>>계정을 언락하자
+create user totoExam IDENTIFIED by toto account unlock;
+
+
+
+
+< 제약 조건 >
+
+>>!!시험!!무조건 알아야
+
+< 무결한 데이터의 5가지 제약 조건 >
+(아예 애초에 무결한 데이터가 되도록 원천봉쇄하자는 것)
+
+무결성 제약조건          역할
+
+NOT NULL                 NULL을 허용하지 않는다
+
+UNIQUE		      중복된 값을 허용하지 않는다. 항상 유일한 값을 갖도록 한다
+                              (각 행 구분)
+
+RIMARY KEY             NULL을 허용하지 않고 중복된 값을 허용하지 않는다
+                              NOT NULL 조건과 UNIQUE 조건을 결합한 형태
+
+FOREIGN KEY              참조되는 테이블의 컬럼의 값이 존재하면 허용한다
+
+CHECK		      설정한 값만을 허용한다
+
+
+
+
+>> 제약조건 확인하기(CONSTRAINTS)
+
+DESC USER_CONSTRAINTS;
+
+SELECT *
+FROM USER_CONSTRAINTS;
+
+
+
+@<NOT NULL >
+>>오류
+cannot insert NULL into ("TOTO"."EMP02"."EMPNO")
+테이블 생성할때 컬럼에 뒤에 NOT NULL 을 붙였기 때문에 
+
+CREATE TABLE EMP02(
+    EMPNO   NUMBER(4) NOT NULL,
+    ENAME   VARCHAR2(10) NOT NULL,
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+
+
+
+
+@< UNIQUE >
+유일한 값만 허용하는 유니크 제약조건
+
+특정 컬럼에 자료가 중복되지 않게 하는 것
+즉, 지정된 컬럼에 유일한 값이 입력될 수 있도록 하는 것
+
+
+CREATE TABLE EMP03(
+     EMPNO   NUMBER(4) UNIQUE,                    --UNIQUE 제약조건
+    ENAME   VARCHAR2(10) UNIQUE,
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+);
+
+
+INSERT INTO EMP03
+VALUES(7499, 'AAA', 'SALES', 30);
+INSERT INTO EMP03
+VALUES(7499, 'BBB', 'MANAGER', 20);
+
+!!오류!!
+unique constraint (TOTO.SYS_C007017) violated
+
+
+
+>>제약조건명을 명시하여 작성
+[형식]
+컬럼명 타입 CONSTRAINT 제약조건명 제약조건
+
+CREATE TABLE EMP04(
+    EMPNO   NUMBER(4) CONSTRAINT EMP04_EMPNO_UK UNIQUE,                   
+    ENAME   VARCHAR2(10) CONSTRAINT EMP_ENAME_NN NOT NULL,               
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+);
+
+
+
+>>제약조건명 명명규칙
+테이블명_컬럼명_제약조건명
+
+CONSTRAINT 테이블명_컬럼명_UK(UNIQUE KEY) 
+CONSTRAINT 테이블명_컬럼명_NN(NOT NULL)  
+
+
+@@!!중요!!
+< PRIMARY KEY > - 기본키
+데이터 구분을 위한 
+PRIMARY KEY 제약조건
+
+이름이 같은 사람은 존재해도 주민번호가 같은 사람은 없다.
+그래서 주민번호는 사람을 구분하기 위해 사용할 수 있다
+테이블에 저장된 데이터를 구분하기 위해서는
+특정 컬럼에 PRIMARY KEY 제약조건을 주면 좋다.
+
+[형식]
+Alter table 테이블명
+Add constraint 제약조건명 제약조건(지정할 컬럼명);
+
+
+예)
+Alter table dept
+Add constraint dept_deptno_PK primary key(deptno);
+
+>> 테이블을 만들때 제약조건을 만들수 있지만, 테이블ㅇ르 만들고 alter table ~ add constraint ~ 해서 제약조건을 따로 만드는게 더좋다 (기능분리 -> 유지/보수 수월)
+
+>> 제약조건은 수정. 불가능
+>> 제약조건은 지우고 다시 만든다
+>> constraint name은 유일하다,
+똑같은 이름은 존재하지 않는다
+But 어떤 컬럼이 지워졌는지 모름
+
+Alter table dept
+Drop constraint dept_deptno_PK;
+
+
+
+
+
+
+!!어려움!! <19일차 sql파일>
+< 참조 무결성을 위한 FOREIGN KEY 제약 조건 >
+참조 무결성이란?
+테이블 사이의 관계에서 발생하는 개념
+
+
+CREATE TABLE EMP07
+(
+    EMPNO        NUMBER(4) PRIMARY KEY,   
+    ENAME        VARCHAR2(10), 
+    JOB           VARCHAR2(9),  
+    MGR           NUMBER(4),    
+    HIREDATE     DATE,         
+    SAL            NUMBER(7,2),  
+    COMM         NUMBER(7,2),  
+    DEPTNO       NUMBER(2) 
+            CONSTRAINT EMP07_DEPTNO_DEPT02_FK REFERENCES DEPT02(DEPTNO)  
+);
+
+
+
+
+마트
+
+과자 테이블
+제품번호    과자명	과자가격	    제조날짜
+제품번호는 숫자 4자리    유일하고 널이 들어갈수 없다
+과자명은 글자50
+과자각격은 정수 4자리, 소수점 1
+제조날짜는 날짜
+
+고객 테이블
+사람이름	주민번호	구매물품
+사람이름은 문자20
+주민번호는 문자14 유일하고 널이 들어갈수 없다
+구매물품은 과자 테이블의 제품번호와 도메인이 동일하며
+                                   참조하고 있다
+과자 데이터 입력
+1000     알아서      SYSDATE
+1001     알아서	SYSDATE
+1002     알아서	SYSDATE
+
+고객 데이터는 알아서 4개 입력
+
+
+
+>>CHECK와 DEFAULT의 제약 조건
+
+>>DEFAULT 제약 조건 설정하기
+
+
+CREATE TABLE DEPT03(
+    DEPTNO NUMBER(2) PRIMARY KEY   --기본키는 유일성, 여기다 DEFAULT 못씀
+    , DNAME VARCHAR2(14)
+    , LOC VARCHAR2(13) DEFAULT 'SEOUL'  --LOC에 대한 값을 직접 넣지 않는다면 무조건 SEOUL을 넣겠다는 것
+);           
+
+
+
+
+
+BONUS
+DEPT
+EMP
+SALGRADE
+TEST
+
+
+사원     부서
+널이 허용되어있는지 없는지 각 컬럼의 여부
+기본키 여부
+외래키 여부
+
+
+
+>>오라클 제약조건 추가하기
+ALTER TABLE 테이블명
+ADD CONSTRAINT 제약조건명 제약조건 EXPR....
+
+need to specify the datatype for this column
+
+
+기본키 : 유니크 키 + NOT NULL + INDEX
+
+유니크 키 + NOT NULL: 
+
+
+< 제약 조건 추가하기 >
+Alter  add
+Alter modify
+
+
+* 제약조건 추가
+ 
+   alter table 테이블명 add primary key(empno);
+   alter table 테이블명 add unique(ename);
+   alter table 테이블명 add foreign key(deptno) references dept(deptno);  => 뒤에가 부모 table
+   alter table 테이블명 modify 컬럼명 not null;
+   alter table 테이블명 add constraint dept01_deptno_pk primary key(deptno); 
+ 
+ 
+ 
+테이블 생성이 끝난 후에 제약 조건을 추가하기 위해서는 ALTER TABLE로 추가해 주어야 합니다.
+ 
+형식
+ 
+ALTER TABLE table_name  ADD [CONSTRAINT constraint_name]  constraint_type (column_name); 
+새로운 제약 조건을 추가하려면 ALTER TABLE 문에 ADD 절을 사용해야 합니다.
+
+사원번호, 사원명, 직급, 부서번호 4개의 칼럼으로 구성된 EMP01 테이블을 제약조건을 하나도 설정하지 않은 채 생성
+ 
+CREATE TABLE EMP01(  EMPNO NUMBER(4),  ENAME VARCHAR2(10),  JOB VARCHAR2(9), DEPTNO NUMBER(4) );  
+
+
+생성이 완료된 EMP01 테이블에 2가지 제약조건을 설정
+첫 번째는 EMPNO 컬럼에 기본키를 설정하고 두 번째에는 DEPTNO 컬럼에 외래키를 설정
+ 
+ALTER TABLE EMP01 ADD CONSTRAINT EMP01_EMPNO_PK PRIMARY KEY(EMPNO);
+ 
+ALTER TABLE EMP01 ADD CONSTRAINT EMP01_DEPTNO_FK  FOREIGN KEY(DEPTNO) REFERENCES DEPT(DEPTNO); 
+
+
+NOT NULL 제약 조건을 이미 존재하는 테이블에 추가
+ 
+NOT NULL 제약 조건은 ADD 대신 MODIFY 명령문을 사용하므로 사용에 주의해야 합니다.  이는 'NULL을 허용하는 상태'에서 'NULL을 허용하지 않는 상태'로 변경하겠다는 의미로 이해하기 바랍니다.
+ 
+ALTER TABLE EMP01 MODIFY ENAME CONSTRAINT EMP01_ENAME_NN NOT NULL; 
+
+
+
+
+
+
+
+
+
+
+
+
+>>ERD 라는 프로젝트 생성
+>> new - other - ERMaster
+>> stock 테이블에 대고 더블클릭
+
+>>추가
+
+
+
+>> 빈 곳에 우클릭 - 표시 -뷰모드 -논리/물리보기
+
+>>NUMBER(4) -> NUMBER(P)선택 하고 정수자리에 4입력
+
+>> 숫자에 대해선 - 시퀀스 증가 가능
+AUTO_INCREMENT 
+
+
+>>N : M 관계 다 만들고(이클립스에서)
+
+>>SQL DEVELOPER 로 가서 구현해야함
+
+
+
+
+
+온라인에서
+http://aquerytool.com/
+
+이클립스에서
+http://blog.naver.com/
+
+ERMaster
+
+http://ermaster.sourceforge.net/update-site/
+
+데이터베이스 구축 테스트
+
+물리 데이터베이스 설계에 따라 데이터베이스 오브젝트를 생성하기 위한 DDL
+

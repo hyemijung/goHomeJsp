@@ -1,0 +1,344 @@
+15일차 강의
+
+능력단위: 데이터베이스 구현
+
+
+실행창(cmd)
+터미널
+
+
+
+오라클 계정
+jhm0227@gmail.com	
+Jhmfly0227
+
+
+Oracle Database 11g Express Edition
+오라클xe 11g 비번: J2829824
+
+
+
+<데이터베이스의 정의>
+어느 한 조직의 여러 응용 시스템이 공요할 수 있도록
+통합, 저장된 운영 데이터의 집합이다.
+
+>>파일 시스템(옛날방식)
+1) 데이터 종속
+응용 프로그램과 데이터 간의 상호의존 관계를 말한다.
+데이터의 구성이나 접근 방법이 변경되면 응용 프로그램도 같이 변경된다 (-> 기능의 분리가 필요해짐)
+
+2) 데이터 중복
+한 시스템 내의 데이터가 중복되어 저장, 관리되면 관련된 데이터의 불일치가 발생할 수 있다.
+
+
+데이터 중복 시 문제점 4가지>>
+1. 일관성
+여러 개의 데이터가 모두 하나의 사실을 나타낸다면 논리적으로 그 내용이 모두 동일하나, 데이터 중복이 있으면 그 동일성을 유지하기가 어렵다. 이것을 데이터의 불일치성, 모순성이라 한다.
+
+2. 보안성
+동일 수준의 보안이 유지되어야 하나, 데이터가 중복되어 있다면 모두 똑같은 수준의 보안을 유지한다는 것이 어렵다.
+
+3. 경제성
+데이터를 중복해서 저장하려면 추가 저장되는 공간에 대한 비용이 더 들게 된다
+
+4. 무결성
+데이터가 만족해야 할 제약 조건이 정확성을 유지해야 한다.
+
+
+<데이터베이스의 정의>
+1. 통합된 데이터(intergrated)
+데이터베이스는 똑같은 데이터가 원칙적으로 중복되어 저장되지 않는다는 것을 말하며, 데이터의 중복은 관리상 복잡한 부작용을 초래한다
+
+2. 저장된 데이터(sotore)
+컴퓨터가 접근할 수 있는 기억장치에 저장된 데이터를 말한다. 주로 하드디스크에 저장되어 관리된다
+
+3. 운영 데이터(operatoin)
+존재 목적이 명확하며 유용성을 지니고 있는 데이터를 말한다.
+단순히 데이터를 모아둔 개념이 아닌 병원 관리를 위한 데이터 구축과 같은 목적이 분명한 데이터여야만 한다
+
+4. 공용 데이터(share)
+여러 사용자가 서로 다른 목적으로 사용하는 공유 가능한 데이터를 말한다
+
+
+
+<데이터베이스의 특징>
+1) 실시간 접근성(real-time access)
+다수의 사용자의 요구에 대해서 처리 시간이 몇 초를 넘기지 말아야 한다
+(밤이든 언제든, 어디서든)
+
+2) 지속적인 변화(Continous Evolution)
+데이터베이스에 저장된 데이터는 최신 정보가 정확하게 저장되어 처리되어야 한다
+
+3) 동시 공유(Concurrent Sharing)
+동일한 데이터를 동시에 서로 다른 목적으로 사용할 수 있어야 한다
+
+4) 내용에 대한 참조
+데이터베이스 내에 있는 데이터 레코드들은 주소나 위치에 의해 참조되는 것이 아니라 가지고 있는 값에 따라 참조해야 한다.
+
+
+
+
+
+
+
+CRUD
+
+Create
+Read
+Update
+Delete
+
+
+
+
+<어떻게 삭제할것인가?>
+https://blog.naver.com/sooni_/220354105929 블로그에 삭제 정보있음
+
+오라클 11g xe 삭제
+disk1 폴더 가서 setup.exe 실행
+remove 선택
+
+
+레지스트리 정보도 삭제해야
+regedit
+
+레지스트리 지우지않으면 어떻게되나?
+같은 이름의 레지스트리를 방지하기위해 다른이름으로 다시등록- 프로그램이 무거우므로 아주 컴퓨터가 느려진다
+
+
+
+회사에서는 Oracle Database 11g Enterprise 버전을 설치한다
+
+설치옵션 중 선택사항구분>
+-데이터베이스 생성 및 구성 - 개발자가 사용할것 (설정, 테스트 가능)
+-데이터베이스 소프트웨어만 설치 - 사용만 하는 것
+- 기존 데이터베이스 업데이트
+
+
+시스템클래스>
+-데스트톱 클래스 - 선택!
+
+
+기본설치>
+왠만하면 기본 셋팅 값 그대로 준다
+
+용량이 큰곳이 필요 -> d드라이브 추천
+- 데이터베이스 버전 -> Enterprise 선택(회사니깐)
+- 문자집합(인코딩과 관련된 캐릭터) -> 보통 유니코드 사용
+- 전역(공공의) 데이터베이스 이름 -> orcl(기본값)
+- 관리 비밀번호 -> 절대 잊으면 안돼!
+
+
+
+
+
+
+<오라클>
+다운로드 - 개발자 툴- SQL Developer 다운 
+
+
+<Oracle Database 11g Express Edition> 확인
+
+실행 - cmd -(하면 명령 프롬프트 창이 뜬다)
+user name 은 system
+
+
+Microsoft Windows [Version 10.0.17134.523]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\TJ>sqlplus system
+
+SQL*Plus: Release 11.2.0.2.0 Production on 금 1월 11 11:31:32 2019
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter password: 내 비밀번호
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL>
+
+
+<내 계정 확인>
+SQL> show user
+USER is "SYSTEM"
+
+<다른 유저 확인>
+SQL> select * from user_users; (세미콜론 빠트리지 말자)
+
+<보여주는 출력형식 변경하는 명령어>
+SQL> set pages 40;
+SQL> set lines 400;
+
+<사용자 계정 만들기>
+scott(아이디) / tiger(비번) 로 계정만들기
+
+
+SQL> create user scott identified by tiger account unlock;
+User created.
+
+SQL> connect scott/tiger
+ERROR:
+ORA-01045: user SCOTT lacks CREATE SESSION privilege; logon denied
+
+Warning: You are no longer connected to ORACLE.
+
+<스캇은 권한을 준적이 없어서 그렇다 권한 제공위해 시스템에 접근한다>
+계정 생성
+권한 제공 - (접속)
+
+SQL> show user;
+USER is ""
+SQL> connect system/J2829824(내 비번)
+Connected.
+SQL> show user;
+USER is "SYSTEM"
+
+<비밀 번호 바꾸기 - oracle12 로 바꾸기>
+SQL> alter user system identified by oracle12;
+User altered.
+
+<스캇에게 권한주기>
+SQL> grant resource, connect
+  2  to scott; 
+  3                (엔터키해서 3줄 생김)
+(엔터키를 칠때마다 줄이 바뀜- 내용은 연속됨 - 가독성을 위해서 이렇게하면 좋다. 끝을 알리는 것은 세미콜론;)
+
+Grant succeeded.
+
+<스캇 접속됨을 확인됨>
+SQL> connect scott/tiger;
+Connected.
+SQL> show user;
+USER is "SCOTT"
+SQL> select*
+  2  from tab;
+
+no rows selected
+
+
+
+<다시 계정을 만들어 보자!>
+
+sqlplus system/자신이 만든 비번
+
+show user;
+
+계정 생성: create user 유저명 identified by 비번 account unlock;
+
+권한 생성: grant resource, connect to 유저명;
+
+<유저명: toto 으로 계정을 만들기> toto(계정)/toto(비번)
+show user toto (나오면 만들기 성공임)
+
+
+<비밀번호 너무 많이 시도해서 접근 금지되었을때 어떻게 해야하나?>
+- 비밀번호 잊어버렸을때 강제로 접근하는 방법은?
+
+C:\Users\TJ>sqlplus system/dhkfslkfdf as sysdba
+   (시스템에 강제로 접근한다)/암꺼나적고 as sysdba로 접근- 막강함
+<계정 잠김 해제방법>
+alter user system account unlock;
+(하면 이제 접근이 가능하다)
+
+
+
+<테이블 만들기>
+ SQL> create table emp (
+  2  empno number(4,0),
+  3  ename varchar2(10),
+  4  job varchar2(9),
+  5  mgr number(4,0),
+  6  hiredate date,
+  7  sal number(7,2),
+  8  deptno number(2,0)
+  9  );
+
+
+<테이블 잘 만들어졌는지 확인>
+SQL> select *
+  2  from emp;
+
+no rows selected
+
+SQL> desc emp; (테이블의 골격?을 본다)(엔터하면 아래 화면 나옴)
+ Name
+                                                                                                       Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EMPNO
+                                                                                                            NUMBER(4)
+ ENAME
+                                                                                                            VARCHAR2(10)
+ JOB
+                                                                                                            VARCHAR2(9)
+ MGR
+                                                                                                            NUMBER(4)
+ HIREDATE
+                                                                                                            DATE
+ SAL
+                                                                                                            NUMBER(7,2)
+ DEPTNO
+                                                                                                            NUMBER(2)
+
+----------------------------------------(여기까지 화면 확인)
+
+<종료>
+SQL> exit
+
+
+CUI(consle User Interface) - cmd, 터미널
+GUI(Graphic User Interface) - 눈에 보이는 화면에서 조작가능
+
+
+SQLD(db에 관련된 자격증)
+
+
+
+
+<sql developer 설치하기>
+
+압축풀기
+
+c드라이브에 설치
+
+(자바에 JDK가 없으면 설치 안됨) - 모든 것에는 순서가 있다!!!
+
+C:\Java\jdk8 (브라우저 경로- JDK가 깔려있는 곳)
+
+
+
+<sql 설치후 실행>
+
+desc emp; 명령어를 한것과 EMP 연것과 같음(GUI로 보고 마우스 클릭한게)
+
+
+도구 - 환경설정 - 환경 - 인코딩에서 UTF8로 바꿔줌
+도구 - 환경설정 - 코드 편집기 - 글꼴 - 원하는데로 바꾸기
+
+
+
+
+<구조>
+system                      sys(king of dba:최상위)
+dba,                          dba
+
+
+<데이터 모델>
+
+<모델링의 이해>
+현실세계          -->          모델
+                  추상화
+                  단순화
+                  명확화 
+
+
+>워크시트 만들기
+도구 - 워크시트 - TOTO 연습스키마
+
+<추상화>
+ 
+
+
+게임 : microsoft solitaire game
+

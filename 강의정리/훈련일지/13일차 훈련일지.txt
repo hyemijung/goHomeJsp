@@ -1,0 +1,117 @@
+13일차
+
+능력단위: 자바 네트워크와 데이터베이스
+
+
+
+
+
+OverrideTest
+
+*tv*
+
+*: 전부
+
+
+객체지향
+
+오버로딩 vs 오버라이딩
+오버로딩 : 기존에 없는 새로운 메서드를 정의하는 것(new)
+오버라이딩: 상속받은 메서드의 내용을 변경하는 것(change, modify)
+
+class Parent{
+    void parentMethod(){
+    }
+}
+
+class child extends Parent{
+
+     void parentMethod(){   }   // 
+     void parentMethod(int i){   }  //
+
+     void childMethod(){   }  //
+     void childMethod(int i){   }
+     void childMethod(){   }     
+
+}
+
+오버라이딩 쓰자
+음료수
+이름 
+용량   100ml
+가격   1000
+이름, 용량과 가격을 볼 수 있는 메서드 (반환 타입 없음)(매개변수 없음)
+
+커피  
+이름
+용량
+가격
+카페인 
+이름 및 용량과 가격, 카페인을 볼 수 있는 메서드 (반환 타입 없음)(매개변수 없음)
+
+출력결과
+음료수 이름: 사이다
+용량 100ml
+가격 1000
+
+커피 이름: 카페라떼
+용량 300ml
+가격 2000
+카페인 10%
+
+alt + shift + r : 이름 가독성있게 보면서 수정 가능
+
+패키지와 임폴트
+package, import
+
+
+PackageTest
+
+com.tg
+
+
+decompiler
+
+
+C:\Java\jdk8\jre\lib
+
+jar
+
+rt.jar
+
+C:\Users\TJ\Desktop\rt\java\lang
+
+enhanced
+
+C:\Java\jdk8
+src.zip
+
+패키지 == 폴더
+
+C:\Users\TJ\Desktop
+C:\
+
+
+The declared package "" does not match the expected package "korea.greet"
+
+
+The import greet.korea.Hello collides with another import statement
+
+
+ctrl + shift + o : 자동 import
+
+*ex*
+
+ex\*.java
+1ex
+
+ex7
+
+dsfjdkslexfdsf3
+
+
+
+
+
+
+

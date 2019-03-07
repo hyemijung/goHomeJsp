@@ -1,0 +1,310 @@
+31일차
+
+div 태그
+
+
+[ CSS 우선순위 규칙 ]
+cascading style sheets
+
+우선순위를 결정하는 요소
+1. 중요도
+2. 명시도
+3. 코드의 순서
+
+저작자 !important -> 저작자 CSS -> 사용자 CSS -> 브라우저 CSS
+저작자? = 프로그래머 
+브라우저? = 기본값
+
+선택자에 따른 명시도
+명시도? 더 구체적인가?
+
+style > id > class > 태그
+
+중복해서 속성이 적용될 때는 선택자의 종류에 따라서
+적용 우선순위가 달라진다.
+(중요도에 따라 덮어 씌워진다)
+
+예 파일명: CSSTest1
+
+
+@ 같은 종류의 선택자일때 우선순위 정하는 규칙?
+>>같은 선택자 끼리라면 깊이가 깊을수록(구체적일수록)
+명시도(우선순위)가 높다
+
+div{} 보다 div ol{}이 더 구체적이고 깊다(depth)
+ 
+예 파일명: CSSTest2.jsp
+
+/*  아래에 콤마로 연결된 .cl_second 이것은 1레벨이다, 콤마는 단순히 이어주는 것 뿐 */
+
+div ol .cl_first, .cl_second { color: green;}
+
+
+>> 같은 종류의 선택자인데, 선택자가 정확히 같다면 그때는 코드의 순서대로 실행한다
+
+
+
+
+!!!!!!폼태그 중요!!!!!!!
+
+프로젝트명: FormPro
+[ form(폼) ]
+웹 사이트에서 특정 콘텐츠에 대한 정보를 제공받을 수 있는 기능들이 있는 태그
+
+form 요소
+<form action="서버 프로그램 url" method="get or post">
+   서식 내용
+</form>
+
+@ input 태그는 form 태그 안에서만 사용가능
+
+ <input type="text" size="12" maxlength="8" />
+ <input type="password"
+ <input type="radio"         -- 유일(단일)선택하도록 시킬때
+ <input type="checkbox"   -- 다중선택하도록 할때 
+ <input type="submit"
+ <input type="submit  -- 제출
+ <input type="reset"
+ <input type="button"  -- 로그인, 검색등도 버튼으로 만듬
+ <input type="image" src="images/search.gif" alt="검색" /> -- 이렇게해도되고 이미지 태그를 써도되고
+ <input type="file" />  -- 파일올리기 (어려움)
+ <input type="hidden" /> --  숨겨야할 것은 숨겨야(꼭알아야)
+
+
+
+ 
+@ 관련있는 것들을 묶는 기술? 컨테이너
+
+
+@ (W3school에서 둘러보기)
+HTML Form Elenments
+HTML Input Attributes
+https://www.w3schools.com/html/html_form_attributes.asp
+
+
+<input type="text" name="firstname" value="John">
+
+@ value 는 값이다 (사용자가 주로 입력)
+<input type="text" name="firstname" value="John">
+
+https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_attributes_value
+-- 코드에서 value 값을 적는거나 실행된 곳에서 value값을 적는것은 같다
+
+@ name ? 클래스안에 존재하는 인스턴스 변수
+
+@ readonly  -- 읽기전용, 수정불가
+<input type="text" name="firstname" value ="John" readonly>
+
+@ disabled  -- 사용불가 : 입력이 불가하도록 바탕이 회색으로 바뀜
+<input type="text" name="firstname" value ="John" disabled>
+
+!! readonly와 disabled는 다름
+readonly 보다 disabled 가 css 가 한단계 더 들어간것
+
+
+
+
+
+(실습)
+주민번호는 현실 세계 반영
+- 오직 자릿수만 맞춘다
+
+핸드폰은 최대 11자리
+
+
+
+@ 폼이 화면의 전환을 가져올수있다
+<form action="./CSSTest1.jsp" method="get">  
+
+<!--액션의 경로(상대경로사용하여):화면전환되도록  
+-전송누르면 CSSTest1실행화면으로 바뀜-->
+
+파일 FormBasic1
+
+@ input 이 form을 벗어나면 누락된다
+
+
+파일 FormBasic2
+<textarea
+<select>
+			      <option
+
+
+
+파일 DivBasic1
+
+
+프레임워크
+사용시 장점:
+
+
+[ div ]
+묶음의 단위
+묶음으로 위치를 마음대로 바꾸려고 할때 사용할수 있다
+>>일일히 하나하나 스타일을 적용하여 다 바꿀수 있지만 그것은 비효율적이므로 div를 사용하여 자유롭게 배치가 가능하다
+컨테이너로서의 개념
+>>관련있는 태그들을 div로 하나로 묶어서 사용
+
+예) 필통안의 연필이나 내용물을 일일히 옮겨도 되지만 필통만 옮겨도 내용물의 위치가 옮겨진다
+포지션 사용
+
+
+
+실습)
+포지션을 사용하여(psition fixed 를 사용하여)
+DivBasic1을 변경하라
+footer div는 넓이를 작게 적어준다
+대충 400px
+
+h2
+ul
+태그들을 footer 태그 오른쪽으로 이동시킨다
+positoin: fixed로
+bottom: 그리고 right: 를 px로 적당히 적어주면 완성됨
+
+
+1. span 아래를 오른쪽으로 옮겨라
+단 div를 사용하지않고
+파일: DivBasicTest1
+
+2. span 아래를 오른쪽으로 옮겨라
+단 div를 사용하고 옮겨라(positoin fixed를 사용)
+파일: DivBasicTest2
+
+
+DivBasicTest3: 혜선씨 코드
+
+
+
+@ 테이블이나 p태그는 블럭을 가운데 정렬따위는 안된다????
+글자는 가운데 정렬할수 있지만
+블럭은 가운데 정렬할수가 없다??
+
+@ 디스플레이 해상도가 보이는 크기정도라고 생각하면 됨
+
+@ html5 semantics 보기
+https://www.w3schools.com/html/html5_semantic_elements.asp
+
+
+
+파일: HelloHtml5
+
+@시멘틱- 태그에 주제나 의미를 넣은 것
+@태그없이 글자를 적는것은 존재해서는 안된다
+
+<label></label> 태그
+
+html5는 주석이 거의 필요가 없다
+<label>을 통해서 직관적으로 네임을 설명하고
+ 
+<input type="search" id="sbox" />
+type에 엄청나게 많은것이 존재
+- search 를 사용하면 어떤 브라우저도 적용됨
+
+
+
+파일: html5Basic1
+시간을 다루는 태그 생김 
+<time>을 다루는 방식
+<time datetime="2012-05-25">2012년 5월 25일</time>
+
+
+
+파일:html5Basic2
+progress 요소와 meter 요소
+<progress/>
+<meter/>
+<delay/>
+<progress/>
+
+
+파일:html5Basic3
+
+파일:html5Basic4
+유효성 검사
+<input type="text" id="name" required="required" />
+required - 필수입력 항목을 설정할때
+
+
+파일:html5Basic5
+필드에 입력형식 힌트주기
+<label for="phone">핸드폰 번호</label><input type="tel"
+id="phone" placeholder="01011112222" />
+
+속성 placeholder : 형식 힌트주기
+
+
+
+파일:html5Basic6
+
+
+[ 정규표현식 ]
+
+
+pattern="\d{3}-\d{3,4}-\d{4}"
+
+|d{3}
+| 은 역슬래쉬
+d 는 십진수 의미
+{3} 3글자만 적어라  는 의미 
+
+
+
+@자동완성기능
+- 데이터베이스랑 연계되어 있을때 막강해짐
+The autocomplete Attribute
+https://www.w3schools.com/html/html_form_attributes.asp
+
+
+@ 개발자는 있는지 없는지를 알아야한다
+안목이 넓어야 한다
+
+
+@ 강사님 책
+레이아웃 어떤것들을 자주쓰는지 적어놓은 것을 살펴보라고함
+183p~186p 설계에 대한 그림을 보고(레이아웃)
+187p~189p 코드를 보면 이정도 그림이 된다는 것을 보면됨
+
+
+
+@ html의 공백: &nbsp;
+
+
+코드, 파일, 폴더
+관리의 대상
+
+분리 코드, 파일 분리
+css와 html을 분리시켜야 한다는 말!
+
+@ 코드를 분리하지 못하면 협업이 불가능하다
+
+
+
+프로젝트명: LastCssSkill
+파일명: hello.html
+
+외부 파일 연결
+!!!무조건 알아야!!!!
+<link> 태그
+
+<link rel="stylesheet" type="text/css" href="./css/hello.css">
+
+@ 개발자가 css로 접근하는걸 막는다
+분리하여 css는 퍼블리셔가 관리한다
+
+
+
+실습)
+테이블 하나 만드는다
+구구단 2단
+
+2단	배경색이 회색 글자크기는 20px
+2	글자크기 10px		
+4
+6
+...
+18
+
+모든 글자는 가운데 정렬이다
+분리해라 html코드와 css코드를 
+border를 보기좋게 무조건 적용시켜라

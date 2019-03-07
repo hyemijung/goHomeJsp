@@ -1,0 +1,136 @@
+2일차
+
+VarEx1
+
+변수(Variable)
+
+변수: 단 하나의 값을 저장할 수 있는 메모리 공간
+변할 수 있는 값
+
+
+오늘의 날짜
+년도, 월, 일
+
+프로젝트명: Today
+클래스명: TodayTest
+
+출력 형식
+2018
+12
+21
+
+조건: 변수를 무조건 사용하시오
+
+
+
+명명규칙
+자바 파일명: 첫글자는 영문자, 대문자
+.java ->   compiler    -> 기계어(.class) 0, 1
+클래스명
+1. 클래스 이름의 첫 글자는 항상 대문자로 한다
+- 변수와 메서드의 이름의 첫 글자는 항상 소문자로 한다
+2. 여러 단어로 이루어진 이름은 단어의 첫 글자를 대문자로 한다.
+- LastIndexOf, StringBuffer   (낙타 표기법)
+3. 상수의 이름은 모두 대문자로 한다. 여러 단어로 이루어진 경우 '_'로 구분한다
+- PI, MAX_NUMBER
+
+변수명 -> 식별자(indentitier)
+1. 대소문자가 구분되며 길이에 제한이 없다
+- true와 True는 서로 다른 것으로 간주한다
+2. 예약어를 사용해서는 안 된다
+- true는 예약어라서 사용할 수 없지만, True는 가능하다
+3. 숫자로 시작해서는 안된다
+- top10은 허용하지만, 7up은 허용되지 않는다
+4. 특수문자는 '_'와 '$'만을 허용한다
+- $harp은 허용되지만, S#arp은 허용되지 않는다
+
+Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor
+
+VarExchangeValue
+
+
+ctrl + f11 : 실행
+
+교환
+
+가독성 높이자
+명명규칙
+들여쓰기
+의미있는 단어 사용
+
+
++
+
+문자 글자
+concat
+ "ㄴㅇㄹㅇㄴㄹ" + x 
+ "ㄴㅇㄹㅇㄴㄹ10"
+
+num1 400
+num2 300
+num3 200 
+
+순차적으로 치환
+
+num1 300
+num2 400
+num3 200
+
+num1 300
+num2 200
+num3 400
+
+num1 200
+num2 300
+num3 400
+
+속도
+용량 
+
+TypeEx
+PrimitiveType 기본형
+
+Type mismatch: cannot convert from int to boolean
+
+
+
+안시 아스키 
+영어 숫자 
+
+유니코드
+UTF-8
+
+인코딩 'A' -> 65
+디코딩 65 -> 'A'
+
+The literal 3000000000 of type int is out of range 
+
+
+
+
+The local variable tmp may not have been initialized
+
+
+CastingEx
+
+int n
+double doubleNum = 10의 자리수.소수3째자리
+
+실수형 변수의 값을 변수 n에 담는다
+
+n을 출력한다
+
+n의 값을 doubleNum에 할당한다 (=)
+
+doubleNum을 출력한다
+
+
+
+
+
+
+
+
+
+
+

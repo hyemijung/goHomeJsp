@@ -1,0 +1,120 @@
+1일차
+
+IT 적성 테스트
+
+요리 
+
+적성
+레시피 과정을 적는다 -> 발표 
+1팀 : 밥을 가장 맛있게 만드는 방법
+
+2팀 : 라면을 가장 맛있게 만드는 방법
+
+
+인문계: 그리고 형용사 미사여구
+이공계: 순서가 있다
+
+
+client 사용자
+server 서비스 = 호스트
+
+D:\Program Files\FileZilla FTP Client
+
+
+윈도우 + r  : 실행 
+cmd 입력 커맨드 창 실행
+
+ipconfig
+
+192.168.0.1
+
+192.168.0.57
+
+
+로컬 local          리모트 remote
+나                      서버   
+
+이름_제목
+
+자바 언어를 통해 개발하기 위한 설치방법
+
+자바, 이클립스
+jdk (java development kit)
+c:java
+
+생성, 수정, 삭제, 읽기
+
+C:\Java\jdk8
+
+jre (java runtime envirement)
+
+명령어 구분하는 용도: 공백
+
+jre 확인 : java -version 
+
+jdk 확인: javac -version  compile
+
+윈도우키 + Pause Break
+
+
+JAVA_HOME
+
+
+C:\Java\jdk8
+
+
+Path
+
+%JAVA_HOME%\bin
+
+ctrl + a : 전체 선택
+
+
+%JAVA_HOME%\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files (x86)\Autodesk\Backburner\;
+
+이클립스
+
+해결방법 능력
+
+
+반디집
+
+C:\workspace
+
+
+HelloProject
+
+
+프로젝트명: MyIntroduce
+class파일 만들 -> Introduce.java 파일
+짝의 이름
+짝의 나이
+
+박성욱
+32
+
+source
+
+// 주석(comment) 한줄 주석 단축키: ctrl + /
+/**/ 범위 주석        ctrl + shift + / 해제 ctrl + shift + \
+
+f2 버튼: 이름 바꾸기
+
+MainTest
+
+
+ctrl + space: 자동완성
+
+
+과제
+
+자바 설치
+월요일 까지
+이클립스를 통해 실행
+
+저 박성욱인데요
+다행히 이클립스 설치하고 잘 실행했습니다.
+
+
+
+

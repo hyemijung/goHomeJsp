@@ -1,0 +1,433 @@
+49일차 강의
+
+능력단위: 어플리케이션의 구현
+
+
+팀프로젝트(금요일까지 제출)
+
+팀명
+조장
+팀원
+
+
+주제
+1.
+2.
+3.
+
+
+참고 사이트
+
+-------------------------------------------
+
+학생 성적 조회 프로그램
+
+학생
+
+-반이름			문자열
+-이름			문자열
+-바른생활			숫자
+-말하기글쓰기		숫자
+-체육			숫자
+-총점			숫자
+-생활기록부		문자열
+
+학생을 조회할 수 있다(검색- 특정학생)
+
+-------------------------------------
+(실습)
+
+맵 이용한다
+
+팀원 정보를 입력한다
+원하는 팀원의 정보를 출력한다
+
+
+---------------------------------------
+
+
+[ JSP ]
+
+
+설정
+
+톰캣과 서버는 건들이지말고
+workspaceWeb을 백업해둔다
+
+이클립스웹의
+프로젝트들을 지운다
+(단 C드라이브 물리영역에서 지우는건 체크하지 않는다)
+
+그리고 서버를 지운다
+(체크표시에 체크하고)
+
+
+물리영역
+WorkspaceWeb으로 온다
+metadata 와 tamcat8 폴더 이외의 것들을 temp 폴더안 workspaceWeb 폴더에 복사하고 지운다
+(metadata와 tomcat8은 worspaceWeb폴더안에서 지우면 안된다!!!!!!!!!!!!!!!!!!)
+
+
+----------------------------------
+
+이클립스web을 켜서
+
+servers 에 어떠한 서버도 연결되어있지 않으므로
+파란색 글씨 선택하여 서버를 설정해야한다
+
+다이나믹프로젝트 하나생성
+테스트할 jsp 파일하나 생성
+
+
+
+
+< 오류 뜸 > 왜? 오라클 데이터베이스가 사용중이므로
+
+Port 8080 required by Tomcat v8.0 Server at localhost is already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).
+
+
+캡처2번
+서버를 클릭하여 포트상태를 본다
+port=8080을 8090으로 고쳐준다
+
+
+------------------------------------
+
+
+@@웹 프로젝트 폴더 구조@@
+
+window- show view - navigator
+
+src - source
+inf - information
+lib - library
+
+[ src ] - 자바 소스 파일을 두는 폴더
+서블릿 클래스나 필터, 리스너 등
+필요한 모든 자바 클래스 파일을 둔다.
+프로퍼티(설정에 관련된) 도 이 폴더에 저장한다.
+
+
+[ build / classes ]
+컴파일된 자바 클래스 파일(.class)이 놓이는 폴더
+패키지에 소속된 클래스인 경우 이 폴더에 
+해당 패키지가 자동으로 만들어진다.
+>> 알고 있으면 오류를 해결하는데 이후에 도움을 준다
+
+
+[ WebContent ]
+HTML, CSS, Javascript, jsp, 이미지 파일등 웹 콘텐츠를 두는 폴더이다.
+웹 애플리케이션을 서버에 배치할 때 이 폴더의 내용물이 그대로 복사된다.
+
+[ WebContent / WEB-INF ]
+웹 애플리케이션의 설정과 관련된 파일을 두는 폴더
+이 폴더에 있는 파일은 클라이언트에서 요청할 수 없다.
+따라서 HTML이나 Javascript, CSS등 클라이언트에서 요청할 수 있는 파일을 이 폴더에 두어서는 안된다.
+
+>>클라이언트(외부에서 요청하는사람)
+>> 우리는 개발자(호스트), 다만 개발측면에 테스트하기위하여 클라이언트 입장이 되어본다
+
+
+[ WebContent / WEB-INF / web.xml ]
+웹 애플리케이션 배치 설명서 (Deployment Descriptor) 파일
+(DD파일이라 부름)
+서블릿, 필터, 리스터, 매개변수, 기본 웹 페이지 등
+웹 애플리케이션 컴포넌트들의 배치 정보를 이 파일에 작성한다. 서블릿 컨테이너는 클라이언트의 요청을 처리할때 이 파일의 정보를 참고하여 섭르릿 클래스를 찾거나 필터를 실행하는 등의 작업을 수행한다.
+
+
+[ WebContent / WEB-INF / lib ]
+자바 아카이브(Archive) 파일(.jar)을 두는 폴더
+(Archive: 기록보관소)
+아카이브 파일은 클래스 팡리과 프로퍼티 파일(.properties)들을 모아 놓은 보관소 파일이다.
+
+
+
+
+------------------------------------------------
+ 
+@자바 파일셋팅
+java Resources -> src 에서 새 클래스 파일 생성
+클래스생성시 패키지와 인터페이스 상속도 함께함
+
+>> 새클래스 만들때 인터페이스 상속받음
+public class HelloWorld implements Servlet {
+으로 상속됨을 확인할수 있음
+
+>> Deployment Descriptor 마우스우클릭
+-> generate Deployment Descriptor 
+
+>> 제대로 호출되는지 확인위해
+syso 추가함
+
+
+
+@ web.xml 에서
+ <서블릿 선언>
+< 서블릿을 URL과 연결>
+
+<!-- 서블릿 선언  -->
+  <servlet>
+  	<servlet-name>Hello</servlet-name>
+  	<servlet-class>lesson.servlets.HelloWorld</servlet-class>
+  </servlet>
+  
+  <!-- 서블릿을 URL과 연결  -->
+  <servlet-mapping>
+  		<servlet-name>Hello</servlet-name>
+  		<url-pattern>/Hello</url-pattern>
+  </servlet-mapping>
+
+@ NewFile.jsp 에서 실행시키면
+크롬창 주소에서
+http://localhost:8090/HelloJsp/Hello 로 변경하여  
+>>콘솔창에
+init() 호출
+service() 호출
+ 이 뜨는 것을 확인한다
+
+
+
+=====================================================
+
+[ 서블릿의 생성과 소멸 ]
+
+생명주기
+init, service, destroy
+
+
+>> init
+
+@Override
+	public void init(ServletConfig arg0) throws ServletException {
+		// 서블릿을 생성한 후 초기화 작업을 수행하기 위해 호출하는 메서드
+		// 서블릿이 클라이언트의 요청을 처리하기 전에 준비할 작업이 있다면
+		// 이 메서드에 작성해야 한다.
+		// ex:) 데이터베이스 연결등
+		System.out.println("init() 호출");
+		this.config = config;
+
+init 은 제일처음 한번만 호출된다
+----------------------------------------------------------------------------------
+
+>> service
+사용자가 원하는만큼 언제어디서든 몇번이든 제공되어야 한다
+
+@Override
+	public void service(ServletRequest req, ServletResponse res) 
+			throws ServletException, IOException {
+		// 클라이언트가 요청할 때 마다 호출되는 메서드
+		// 실질적으로 서비스 작업을 수행하는 메서드
+		System.out.println("service() 호출");
+	}
+
+
+----------------------------------------------------------
+
+>>destroy
+
+@Override
+	public void destroy() {
+		// 서블릿 컨테이너가 종료되거나 웹 애플리케이션이 멈출 때,
+		// 또는 해당 서블릿을 비활성화 시킬 때 호출된다.
+		// 따라서 이 메서드에는 서비스 수행을 위해 확보했던 자원을
+		// 해제한다거나 데이터를 저장하는 등의 마무리 작업을 작성하면 된다
+		// (안하면 난리난다 - 치명적) - 처음이자 마지막으로 호출됨
+		System.out.println("destroy() 호출");
+	}
+
+------------------------------------------------
+
+>> service를 제외한 나머지 부분은 공통단을 맡은 전체를 관리하는 실력자만 관리한다
+>> 우리는 service에만 집중하면 된다
+
+
+
+
+
+====================================
+
+
+@@ 수정할때는 톰캣(서버)을 내리고  수정한후 다시실행해야한다
+
+======================================
+
+[ 화면단에서 오류]
+이제부턴 수정이 자유롭지 않다
+
+서버를 stop 시키고 
+
+브라우저의 고급설정에 가서
+캐싱이나 쿠키를 삭제하고
+브라우저 전체를 종료하고
+
+jsp 파일내에 수정하고 싶은 내용을 수정하고
+다시 실행을 시키면 제대로 된다
+
+
+====================================
+
+
+[ 자바에서의 오류]
+
+컴파일러의 수정은?? 
+
+자바에서 수정을 하고싶다면 
+
+코드를 수정하고
+저장하면
+
+서버에 [started, Restart] 됨을 확인할수 있다
+destroy 호출됨을 확인됨
+
+============================
+
+[ web.xml ]
+
+어떤 홈페이지든 web.xml 이 무조건 먼저 실행된다
+(설정의 영역이므로)
+
+- 선언문이 있다
+
+
+@ 자바파일명을 바꾸면 이쪽에 와서도 바꿔야 한다
+@양쪽의 이름이 완벽히 일치되어야함
+<display-name>HelloJsp</display-name>
+  
+
+
+
+
+@ 이런 클래스들이 존재한다는 것을 알려주는 서블릿 선언
+@양쪽의 이름이 완벽히 일치되어야함
+  <!-- 서블릿 선언  -->
+  <servlet>
+  	<servlet-name>Hello</servlet-name>
+  	<servlet-class>lesson.servlets.HelloWorld</servlet-class>
+  </servlet>
+  
+>> 서블릿 네임은 서블렛 클래스명을 대신한다
+Hello 라고하면 HelloWorld 클래스를 호출하는것으로 치자
+>>http://localhost:8090/HelloJsp/Hello 
+
+  <!-- 서블릿을 URL과 연결  -->
+  <servlet-mapping>
+  		<servlet-name>Hello</servlet-name>
+  		<url-pattern>/Hello</url-pattern>
+  </servlet-mapping>
+
+
+이건 자바의 내용은 알수가 없다
+ 
+@ /Hello 의 슬래시는 root 표시이다
+
+@ 서블릿은 몇번이고 선언할수 있다
+------------------------------------------------
+(실습)
+
+Myinfo.java
+
+서블릿 클래스화 시켜서
+init
+service		자신의 이름, 나이를 syso로 출력한다
+destroy
+
+url 주소는 자신의 이니셜로 설정한다
+
+
+>>http://localhost:8090/HelloJsp/jhm
+하면 syso에 입력한 내 이름과 나이가 뜬다
+
+
+==================================
+
+@@ 자바 클래스를 만들고  짜고
+-> 그다음 web.xml 에서 서블릿 선언과 서블릿을 url과 연결하는 순서로  수행해야한다
+
+
+
+-=======================================
+
+리더가(한사람이) 폴더의 기본적인 틀을 만들고
+web.xml 의 틀을 완성하고
+깃허브로 올려서 팀원들과 공유한다
+
+
+깃허브에서 받은것을 팀원들이 자기파트를 수정하고 무조건 올리면 안되고 팀원들에게 알리고 수정된 사항을 업로드해야한다.
+아니면 싸움나고 엉망된다
+
+
+===============================
+
+[ namespace ]
+
+패키지명 + 클래스명 = Full qualified name = QName
+
+패키지명과 클래스명 전체를 불러야한다
+예) lesson.servlets.HelloWorld
+
+>> 같은 클래스명이 많이 존재함으로 namespace로 불러야 한다(패키지명이 중요하다)
+
+
+===================================
+
+
+[ index.jsp ]
+
+웹컨텐트에서 index.jsp 파일을 만들었다
+
+이것이 실행 시켰을때 다른 jsp파일과 다른점은??????
+
+http://localhost:8090/HelloJsp/index.jsp
+http://localhost:8090/HelloJsp/
+해도 결과는 똑같다
+
+왜?
+web.xml 에서 welcom-file-list에 존재하기 때문에
+>> 자기만의 홈페이지 첫화면을 등록하려면 
+보통 index.jsp 에서 원하는 형태를 셋팅하면 된다
+
+<!-- 홈페이지의 첫화면 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+
+==================================
+
+[ 이클립스 셋팅 ]
+
+깃허브와의 연동을 위한
+
+파일 형상 관리 - 이클립스를 통해 깃허브와 연동을하여
+
+
+====================================
+[ ERmaster 설치 ]
+
+
+온라인 설치방식
+http://ermaster.sourceforge.net/
+
+ERmaster 설치
+
+help - install newsoftware -
+
+오프라인 설치방법(캡처 11번)
+https://sourceforge.net/projects/ermaster/
+
+
+이클립스를 종료하고
+다운받은 파일의 jar 파일을 복사하여
+c드라이브 -> eclipseWeb -> plugins에
+복사한 jar 파일을 붙여 넣기한다
+ 
+C:\eclipseWeb\plugins 복붙할 경로
+
+
+플러그인 삭제는 막 삭제하는것이 아니라
+언인스톨해야
+

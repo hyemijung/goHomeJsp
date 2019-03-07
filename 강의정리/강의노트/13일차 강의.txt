@@ -1,0 +1,116 @@
+13일차 강의
+
+OverridingTest
+
+
+ctrl + shift + R : 
+-> *tv* 라고하면 tv가 들어간 모든 것들을 찾아줌
+* : 전부 라고하는 표현식
+
+alt + shift + R :이름을 가독성있게 보면서 수정가능
+
+
+
+
+
+
+ctrl + shift + o : 자동 import (중요!!!!!)
+-> 해서 만든거랑
+
+import 패키지명.*;
+-> 해서 만든거랑의 차이??
+-> ctrl + shift + o 할필요가 없음
+에스테리크 * : 전체라는 뜻
+
+
+
+
+*ex* 라고 검색하면 찾을수 있는 것들?
+
+ex
+1ex
+ex7
+dlkdajlfexjlij3
+
+
+
+
+
+
+필기면접: 객체지향
+
+
+<비교 구분 가능한가?>
+
+오버로딩 vs 오버라이딩
+
+오버로딩은 메서드 자체로 존제
+오버라이딩은 상속의 개념으로 존재
+
+오버로딩: 기존에 없는 새롤운 메서드를 정의하는 것(new)
+오버라이딩: 상속받은 메서드의 내용을 변경하는 것(change, modify)
+
+
+
+
+<만들기>  - OverridingTest - Drink - Coffee - DrinkCoffeeTest
+음료수
+이름
+용량 100ml
+가격 1000
+
+이름 용량과 가격을 볼 수 있는 메서드 (출력용) 반환타입 없음, 매개변수 없음
+
+커피
+이름
+용량
+가격
+카페인
+
+이름 및 용량과 가격, 카페인을 볼 수 있는 메서드 (출력용) 반환타입 없음 , 매개변수 없음
+
+
+
+출력결과
+음료수 이름: 사이다
+용량 100ml
+가격 1000
+
+커피 이름: 카페라떼
+용량 100ml
+가격 1000
+카페인 10%
+
+
+
+인터페이스- 추상적인 것을 어떻게
+
+
+패키지와 임폴트 <시험>
+package, import
+
+<PackageTest - 프로젝트명>
+
+com.tg 붙이고 클래스 생성
+
+
+
+
+
+
+<decompiler 삭제와 재설치>
+Help -> Eclipse Marketplace -> installed -> enhanced compiler 선택하고 uninstalled 선택
+
+helo - install newsoftware - what is already installed? - JD-Eclipse is a plug-in을 지운다
+
+
+
+c폴더 -> java -> jdk8 -> jre -> lib 로 가라
+C:\Java\jdk8\jre\lib
+
+jar(java archive resource)붙은 파일중 rt.jar 복사 -> 바탕화면 붙여넣기 -> 압축 풀기
+
+rt - java - lang - Math.class 더블클릭하면 컴퓨터 언어로 적힌걸 볼수있다(이상한 언어처럼 보임;;;;)
+이  컴퓨너 언어를 우리가 알수있는 언어로 보려면 decompiler를 사용한다
+
+

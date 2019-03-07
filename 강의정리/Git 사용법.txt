@@ -1,0 +1,46 @@
+﻿이클립스에서 
+window -perspective - open perspective  -> other -> git
+
+인터넷 깃에서 
+new ->
+	Repository name 에서 이름입력
+	Desctription  	
+	Public -> 무료
+	private -> 결제용
+	브로쉬에서 master 해야함
+	Create repository -> ssh에 있는거 복사
+
+그후 이클립스에서
+Clone a Git repository 클릭 ->
+
+	URl : 주소 입력 
+	
+    Authentication
+	user        : git id입력
+	password  : git password 입력
+	Store in Secure Store 체크
+
+	       ->
+	       Local Destination
+		Directory : 컴퓨터 어디에 있는지
+		finsh
+인터넷 깃에서
+Quick setup — if you’ve done this kind of thing before 곳에서
+README -> 클릭		
+	내용수정후
+	Commit new file 에서 
+	내용을 저장하고 
+	Commit new file
+
+이클립스에서 깃허브로 올리고 싶을때
+자신프로젝트 우클릭 -> team ->Schare Project -> 
+		Repository -> 디렉토리 설정
+
+이클립스에서 깃허브로 받고 싶을때
+	git -> pull				git 가서 pull을 누른다
+	갖고오고 싶은 프로젝트명 -> 우클릭 		갖고오고 싶은 프로젝트를 오른쪽 클릭
+	import Project 후 finsh			import Project
+
+
+				
+			

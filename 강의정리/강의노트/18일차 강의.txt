@@ -1,0 +1,542 @@
+18일차 강의 /19일차 강의
+
+능력단위: 데이터베이스 구현
+
+<기존 컬럼 속성 변경하기>
+
+[형식]
+ALTER TABLE 테이블명
+MODIFY (컬럼명 데이터 타입, ...);
+
+
+
+>>아래 과정 수행 중 오류뜸
+
+기존 JOB 9
+이후 JOB 30
+그 다음 JOB 5  (오류 발생!)
+cannot decrease column length because some value is too big
+값 데이터?
+>> JOB에 PRESIDENT(9글자) 이걸 5자로 줄이려면 값에 손실이 오므로 오류 발생
+
+!!!!!꼭 기억!!<정리 - 수정은 마음대로 할수 없다>
+>>데이터 길이를 변경하려는 경우
+1) 해당 컬럼에 자료가 있는 경우
+@ 크기를 늘릴 수는 있지만 
+현재 가지고 있는 데이터의 크기보다 작은 크기로 변경할 수 없다.
+@컬럼의 데이터 타입을 변경할 수 없다
+
+
+
+>> 꼭 5글자로 바꿔야 한다면 어떻게?
+데이터를 없애 버리면 가능
+DELETE FROM EMO02;
+ALTER TABLE EMP02
+MODIFY (JOB VARCHAR2(5));
+
+2) 해당 컬럼에 자료가 없는 경우
+@ 컬럼의 크기를 변경할 수 있다(마음대로)
+@ 컬럼의 데이터 타입을 변경 할 수 있다
+
+단, 해당 컬럼이 NULL 값만 가지고 있으면 데이터 유형을 변경할 수 있다.
+(미래에 데이터를 넣을거지만 어떤 것을 넣을지 모를때 NULL로 구성해둠 - 하지만 NULL은 최대한 없애야함 - 공간이 제대로 활용되지 않고 있다는 것이므로)
+
+오류발생!
+column to be modified must be empty to change datatype
+
+>> 데이터 타입을 변경하려면
+존재하고 있는 데이터가 없어야 된다
+(숫자를 데이터로 바꿀수 없다)
+
+DELETE FROM EMP02;
+ALTER TABLE EMP02
+MODIFY (SAL VARCHAR2(100));
+
+
+
+
+<문제>
+DEPT03 테이블을 생성해서 적용하시오
+
+부서번호의 숫자길이를 4자리로 변경하시오
+
+부서위치의 문자열 길이를 20으로 변경하시오
+
+
+
+
+<컬럼명 바꾸기>
+[형식]
+ALTER TABLE 테이블명
+RENAME COLUMN 변경해야 할 컬럼명 TO 새로운 컬럼명;
+
+
+<테이블명 변경하기>
+[형식]
+RENAME 변경 전 테이블명 TO 변경 후 테이블명
+
+
+
+
+<제약조건>
+테이블에 새로운 행을 추가 INSERT INTO 문
+
+[형식]
+1. INSERT INTO 테이블명 (넣고자 하는 컬럼명들)
+VALUES (넣고자 하는 컬럼명들에게 넣을 데이터 리스트);
+INSERT INTO
+
+2. INSERT INTO 테이블명 
+VALUES (전체 컬럼에 넣을 데이터 리스트);
+
+<부가설명>
+해당 컬럼명과 입력되어야 하는 값을 서로 1:1로 매핑해서 입력한다
+
+오류!
+not enough values
+>> 컬럼 네개에 대해서 다넣어야 되는데 세개만 넣어서 오류
+
+
+문제>
+부서 테이블을 복제한 dept01테이블에서 
+새로운 내용을 추가하시오
+
+부서번호가 50이고 부서명은 education이며
+위치는 ganknam
+을 추가한다
+
+부서번호가 60이고 위치가 seoul 인 데이터를 추가하시오
+
+
+문제>
+
+EMPNO  ENAME     JOB      	  SAL
+1000      APPLE      POLICE    10000
+1010      BANANA   NURSE    15000
+1020   	ORANGE	  DOCTOR  25000
+1030	VAT	  NULL	   2000
+
+
+>>NULL 을 입력하고 싶을땐
+NULL (O)
+'NULL'  (X)  - 싱글따옴표 안에 들어가면 문자열
+
+
+
+
+
+< 테이블의 내용을 수정 UPDATE문>
+업데이트 하나의 단위는 행이다!
+
+[형식]
+@전체 행의 내용을 변경한다
+UPDATE 테이블명
+SET 변경하고자 하는 데이터가 있는 컬럼명 = VALUE1
+COLUMN2 = VALUE2
+
+@테이블의 특정 행만 변경한다
+WHERE 컬럼명 = 값(VALUE)
+
+<WHERE문 -> 조건문>
+UPDATE 테이블명
+SET 변경하고자 하는 데이터가 있는 컬럼명 = VALUE1
+COLUMN2 = VALUE2
+WHERE 조건문;
+
+예)
+UPDATE DEPT01
+SET DNAME = 'ACCOUNT'
+WHERE DNAME = 'ACCOUNTING';
+(ACCOUNTING을 ACCOUNT 로 변경한 것)
+
+
+
+<테이블의 불필요한 행을 삭제하는 DELETE문>
+[형식]
+DELETE FROM 삭제를 원하는 정보가 들어있는 테이블명
+WHERE 조건절;
+
+
+
+
+< COMMIT 명령어 ROLLBACK 명령어 >
+@데이터 무결성이 보장된다
+@영구적인 변경 전에 데이터의 변경사항을 확인할 수 있다
+@논리적으로 연관된 작업을 그룹화 할 수 있다
+
+
+트랜잭션은 
+ALL OR NOTHING
+
+
+DML (SELECT, INSERT, DELETE, UPDATE) 
+ VS 
+DDL (CREATE, ALTER, DROP, RENAME)
+
+@DML에 관련된 작업은 어딘가 임시 저장소에 보관된다
+그 내용은 확인이 가능하다
+임시저장소에 있는 내용은 ROLLBACK 가능하다
+
+@임시저장소가 아닌 실제 저장소에 보관된 데이터는 ROLLBACK 불가능하다
+
+@DDL 은 내용을 수행 후 마지막에 COMMIT; 를 수행한다
+
+
+
+< 강사님 컴퓨터에 붙어보자~~!!>
+키워드: 오라클 11g xe원격접속하기
+
+C:\oraclexe\app\oracle
+C:\oraclexe\appp\oracle\product\11.2.0\server
+
+listener.ora
+tnsnames.ora
+(이 두파일을 바탕화면 복붙, 
+
+새폴더만들어서 백업으로도 하나 더만듬 - DB백업자료 폴더)
+
+
+
+내 pc 마우스 우클릭 -> 속성
+
+
+
+client (사용자 고객)
+
+client 요청               니 서버에 붙어도 되겠니?
+listener.ora 등록         서버 컴퓨터에서 설정
+
+
+데드 락
+락(lock) - 잠금
+누군가가 접근하고 있다면 다른사람이 동시에 접근하지 못하도록 잠그는 것
+
+
+
+
+관계, 조건에 대해서 배워보자!
+< 데이터 무결성을 위한 제약 조건 >
+데이터 무결성 제약조건(Data Integrity Constraint Rule)이란?
+
+테이블에 부적절한 자료가 입력되는 것을 방지하기 위해서 테이블을 생성할 때 각 컬럼에 대해서 정의하는 여러가지 규칙
+
+무결성: 데이터베이스에 저장된 값과 그것이 표현하는 현실세계의 실제 값이 일치하는 정확성을 이야기한다.
+
+
+
+부서명과 지역명 저장하다 보면
+동일한 이름이 저장될 수도 있다.
+동일한 데이터가 저장되어 있더라도
+이를 구분할수 있게 하는 특별한 컬럼이 필요하다
+부서 번호라는 컬럼을 추가하여 유일한 값을 갖게하면 무결한 데이터를 만들 수 있다
+
+
+DML 은 where 조건절을 사용가능
+DDL 은 사용할수 없다
+
+
+
+!!시험!!무조건 알아야
+< 무결한 데이터의 5가지 제약 조건 >
+(아예 애초에 무결한 데이터가 되도록 원천봉쇄하자는 것)
+무결성 제약조건          역할
+
+NOT NULL                 NULL을 허용하지 않는다
+
+UNIQUE		      중복된 값을 허용하지 않는다. 항상 유일한 값을 갖도록 한다
+                              (각 행 구분)
+
+PRIMARY KEY             NULL을 허용하지 않고 중복된 값을 허용하지 않는다
+                              NOT NULL 조건과 UNIQUE 조건을 결합한 형태
+
+FOREIGN KEY              참조되는 테이블의 컬럼의 값이 존재하면 허용한다
+
+CHECK		      설정한 값만을 허용한다
+
+
+
+>>제약조건 확인하기(CONSTRAINTS)
+
+DESC USER_CONSTRAINTS;
+
+SELECT *
+FROM USER_CONSTRAINTS;
+
+
+
+
+@<NOT NULL >
+>>오류
+cannot insert NULL into ("TOTO"."EMP02"."EMPNO")
+테이블 생성할때 컬럼에 뒤에 NOT NULL 을 붙였기 때문에 
+
+CREATE TABLE EMP02(
+    EMPNO   NUMBER(4) NOT NULL,
+    ENAME   VARCHAR2(10) NOT NULL,
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+
+
+
+
+문제>
+
+제품 테이블이 있다
+컬럼명  
+제품번호 NUMBER(2) 널을 허용하지 않는다
+제품이름 VARCHAR2(100)  널을 허용하지 않는다
+제품회사 VARCHAR2(100) 널을 허용한다
+
+제품 테이블을 만드시오
+3개의 데이터를 입력한다
+1개의 데이터는 10, 핸드프로, 합격하자
+나머지 2개의 데이터는 마음대로 입력
+
+
+>>DB가 모든 것의 시작이다
+
+
+
+
+@< UNIQUE >
+유일한 값만 허용하는 유니크 제약조건
+
+특정 컬럼에 자료가 중복되지 않게 하는 것
+즉, 지정된 컬럼에 유일한 값이 입력될 수 있도록 하는 것
+
+
+CREATE TABLE EMP03(
+     EMPNO   NUMBER(4) UNIQUE,                    --UNIQUE 제약조건
+    ENAME   VARCHAR2(10) UNIQUE,
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+);
+
+
+INSERT INTO EMP03
+VALUES(7499, 'AAA', 'SALES', 30);
+INSERT INTO EMP03
+VALUES(7499, 'BBB', 'MANAGER', 20);
+
+!!오류!!
+unique constraint (TOTO.SYS_C007017) violated
+
+
+
+
+문제>
+
+제품 
+
+DEPT04 테이블을 만드시오
+부서번호는 유일한 값만을 가질 수 있다
+부서이름은 동일한 값을  가질 수 있다
+위치는 유일한 값만을 가질 수 있다.
+
+데이터 3개 넣어서 확인하시오
+
+
+>>제약 조건확인 명령어
+SELECT *
+FROM USER_CONSTRAINTS;
+
+
+>>제약조건명을 명시하여 작성
+[형식]
+컬럼명 타입 CONSTRAINT 제약조건명 제약조건
+
+CREATE TABLE EMP04(
+    EMPNO   NUMBER(4) CONSTRAINT EMP04_EMPNO_UK UNIQUE,                   
+    ENAME   VARCHAR2(10) CONSTRAINT EMP_ENAME_NN NOT NULL,               
+    JOB      VARCHAR2(9),
+    DEPTNO  NUMBER(2)
+);
+
+
+>>제약조건명 명명규칙
+테이블명_컬럼명_제약조건명
+
+CONSTRAINT 테이블명_컬럼명_UK(UNIQUE KEY) 
+CONSTRAINT 테이블명_컬럼명_NN(NOT NULL)  
+
+
+
+
+@@!!중요!!
+< PRIMARY KEY > - 기본키
+데이터 구분을 위한 
+PRIMARY KEY 제약조건
+
+이름이 같은 사람은 존재해도 주민번호가 같은 사람은 없다.
+그래서 주민번호는 사람을 구분하기 위해 사용할 수 있다
+테이블에 저장된 데이터를 구분하기 위해서는
+특정 컬럼에 PRIMARY KEY 제약조건을 주면 좋다.
+     
+
+
+>>문제
+
+우리 제품은 빔 프로젝트를 만드는 회사인데
+제품의 이름은 EPSON이고요
+가격은 타 회사에 비해 아주 쌉니다
+10000원 정도 합니다
+이걸 이번에 저희들이 전자 시스템으로 변경하고 싶은데 가능할까요?
+
+EPSON SERIES1     10000
+EPSON SERIES2     100000
+EPSON SERIES1      20000 
+
+하나의 제품명을 찾을 수 있도록 테이블을 구성하시오
+
+(눈에 보이지 않는 데이터도 하나 넣어야 한다??)
+
+SELECT *
+FROM 제품테이블
+WHERE ??? 컬럼명 = ???;
+
+EPSON SERIES1     10000 가 조회 가능하도록 만들자
+
+
+
+!!어려움!!
+< 참조 무결성을 위한 FOREIGN KEY 제약 조건 >
+참조 무결성이란?
+테이블 사이의 관계에서 발생하는 개념
+
+
+!!오류!!
+integrity constraint (TOTO.EMP07_DEPTNO_DEPT02_FK) violated - parent key not found
+
+
+
+문제>
+마트
+
+과자 테이블
+제품번호	  과자명    과자가격     제조날짜
+
+제품번호는 숫자 4자리  유일하고 널이 들어갈수 없다
+과자명 글자50
+과자가격은 정수 4자리, 소수점 1자리
+제조날짜는 날짜
+
+고객 테이블
+
+사람이름 	    주민번호(4자리정도)    구매물품
+
+사람이름은 문자20
+주민번호는 문자14  유일하고 널이 들어갈수 없다
+구매물품은 과자 테이블의 제품번호와 도메인이 동일하며(FOREIGN KEY사용해 참조하라는 것)
+
+
+과자 데이터 입력
+1000	알아서 	SYSDATE
+1001	알아서	SYSDATE
+1002	알아서	SYSDATE
+
+고객 데이터는 알아서 4개 입력
+
+>>날짜 - 데이터타입 : DATE
+입력할때 DATE 자리에 SYSDATE (하면 시스템상의 데이터가 들어감)
+
+
+
+왜래키는 NULL 이 허용
+기본키는 NULL 이 허용 X
+
+
+
+< CHECK와 DEFAULT의 제약 조건 >
+
+< DEFAULT 제약조건 >
+
+LOC VARCHAR2(13) DEFAULT 'SEOUL' 
+ --LOC에 대한 값을 직접 넣지 않는다면 무조건 SEOUL을 넣겠다는 것
+
+ --DEFAULT는 CONSTRAINT 를 앞에 붙이지 않는다   
+
+
+
+
+BONUS
+DEPT
+EMP
+SALGRADE
+TEST
+
+
+
+>> 테이블 삭제
+1) DROP TABLE 테이블명;
+2) 테이블 우클릭 - 테이블 - 삭제로 가서 지우기
+
+
+
+문제>
+
+사원           부서
+
+널이 허용되어 있는지 없는지 각 컬럼의 여부
+기본키 여부
+외래키 여부
+
+
+< 오라클 제약조건 추가하기 >
+ALTER 테이블명
+ADD CONSTRAINT 제약조건명 제약조건 EXPR...
+
+
+!오류!
+need to specify the datatype for this column
+
+
+
+제약조건은 수정 없다
+삭제하고 다시 만드는것
+
+컬럼은 수정이 가능하다
+(이 둘을 헷갈려하지말자)
+
+
+>> NOT NULL은 ADD가 안되고 MODIFY 를 통해서만 가능
+
+
+>> 기본키에는 NOT NULL이 포함된 것
+>> NOT NULL은 엄밀히 따져 제약조건이 아님
+
+>>NOT NULL 있으면서 기본키 있을수 있음
+기본키있으면서  NOT NULL 있을수 있음
+
+>> 하지만 기본키는 NOT NULL을 포함하므로
+둘중 하나 더 범위가 큰 기본키만 사용한다
+
+>>차이점
+기본키 = 유니크 키 + NOT NULL 인데 둘의 차이점은??
+
+기본키: 유니크 키 + NOT NULL + INDEX
+(인덱스가 존재함)
+
+유니크 키 + NOT NULL
+
+
+
+
+
+< 시험 실기 대비 >
+
+>>우선 이클립스에 통합 툴 설치해야함
+이클립스 - help - install newsoftware - add - 이름에 ERMaster 적고 샘이보내주신 주소 붙여넣기한다
+
+>>테이블에 대고 더블클릭
+
+
+온라인에서
+http://aquerytool.com/
+
+이클립스에서
+http://blog.naver.com/
+
+
+ERMaster
+
+http://ermaster.sourceforge.net/update-site/

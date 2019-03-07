@@ -1,0 +1,209 @@
+33일차 강의
+
+
+파일: RollingBanner 문제해결하기
+
+(1번해결 - 밑줄해결)
+
+a 인라인태그
+
+글자를 적으면 다른 창으로 이동
+글자에 대해 _ 밑줄을 붙여주는 기능이 있음
+
+공백도 문자이므로 a태그안에 공백없이 다붙여준다(가독성위한 정렬보기엔 안좋더라도)
+<a> </a> 를
+<a></a>  로 바꿔 공백을 없앤다
+
+<a href="#prev" 
+				onclick="return prevGallery();">
+				<img src="images/left_btn.png" alt="이전 그림" /></a> 
+
+
+2번해결) 내려간 오른쪽 버튼 옆으로 올리기
+
+1. div 크기를 바꾸던지
+(내가한방법)
+CSS 로 가서 
+#galleryWrap 에 width: 500px을 700px 로 크게 바꿔줌
+
+2. 이미지들 크기를 바꾸던지
+스타일안에 구체적 이미지 크기를 지정하여 바꾼다
+캡처 21,22번
+
+
+
+
+프로젝트명 : DomStudy
+ppt: DOM 도식화 표현 (화면단/실습폴더안)
+DomModelBasic1.jsp
+
+DOM(Document Object Model)
+문서 객체
+
+문서(document)는 html 그자체
+html은 객체로 구성되어 있다는 것
+
+모든 웹 문서는 여러 요소(태그)들이 각각의 역활에 따라 구조화되어 있다.
+
+모든태그는 객체이다
+(스타일은 객체가 아니다)
+
+!!!!꼭 기억!!!!
+@ html : 객체 
+조상노드 라고 부른다
+(최상위 부모 = 조상 , root)
+>> 모든 것의 조상은 무조건 html이다!!!
+
+@ 부모자식 관계는 상대적인 것이다
+
+
+!!!!!기억!!!!!!
+@ 글을 쓸수있는 것에 보이지 않지만 
+<text></text> 태그가 있는 것이다
+그래서 글을 쓸수있었던 것
+>> 그러므로 눈에 보이지않지만 자식을 물어보면 그태그에 글자 적을수있다면 <text>가 자식인 것이다
+
+
+파일: DomModelBasic1
+의 스크립트를 <head>아래로 정의하면 오류가 난다 왜?????
+캡처 26번
+
+@ 기본적으로 <
+
+객체가 null 이라는건 만들어진적 없다는것
+
+오류가 뜨면 자기자신의 위에서 오류가 발생했음을 알아야한다
+왜 오류? 코드에는 순서가있다(위에서 아래로)
+
+
+
+(실습)
+id가 list인 요소 중
+li의 인덱스가 2번인 3번째 li을 선택하여(children)
+글자색의 파란색으로 변경하시오
+
+
+[ 원거리 선택자 ] 
+id 선택자
+
+선택 대상.getElementById("아이디명");
+
+태그에 지정된 id 속성값을 이용하여 특정 태그에 접근할 수 있다
+
+
+
+파일: DomModelBasic1
+
+파일: DomModelTest1
+(실습)
+(오로지 자바스크립트로 해결하시오)
+p태그
+id를 지정해줘서
+글자색을 변경하고
+경계선을 점선, 파란색 계열 2px정도 크기로 지정하시오
+
+-----------------------------------------------
+
+
+DomModelBasic2
+
+
+[ 태그 선택자 ]
+
+선택대상.getElementsByTagName("태그명");
+
+
+
+
+
+DomModelTest2
+DomModelTest2_1
+(실습)
+
+id가 list인 요소 중
+li의 인덱스가4번인 3번째 li을 선택하여(children)
+글자색의 파란색으로 변경하시오
+
+
+id 사용하지않고 DomModelTest2
+id 를 사용하고 DomModelTest2_1
+
+
+
+명명규칙 신경쓰자!!!!!!!
+var ulObjArr=document.getElementsByTagName('ul')[1];
+var liObj = ulObjArr.getElementsByTagName('li')[2];
+
+ulObjArr
+(!!!!!!!!!!배열임을 알기위해 명명할때 끝에 Arr 꼭붙이자
+시험에 Arr안붙이면 틀린걸로함!!!!!!!!!!!!!!!)
+(원래 보통은 Arr이 아니라 List로 끝나도록 명명한다)
+
+
+
+(실습)
+근거리 선택자 아래에 있는
+parentNod~firstChild 까지
+글자색은 초록색, 폰트는 기울임표시 하시오
+
+DomModelTest3
+@<script>에서 
+객체를 불러 스타일을 사용할때 
+바디에서 하던 그것을 그대로 복사하면 문제가 생김
+font-style 을 그대로 사용하면 안된다(fontStyle로 바꿔줘야 오류안남)
+
+nextSibling은 경계선 표시하시오
+푸르스름한 색으로(rgb 사용)
+
+
+
+------------------------------------------------------
+
+[ 클래스 선택자 ]
+
+HTML DOM getElementsByClassName();
+
+https://www.w3schools.com/jsref/met_document_getelementsbyclassname.asp
+
+파일: DomModelBasic4
+
+
+파일: DomModelBasic5
+
+@ childNodes 는 
+정렬 구성에 영향을 받는다!!!!!!!!!!
+>> 보기좋게 정렬을 해버리면 -> 실행시 공백을 인식하여 undefind가 뜬다
+>> 이것을 공백없이 다 붙여서 일렬로 정렬하면 undefind가 사라진다
+
+
+파일: DomModelBasic5_1
+이를 바꾸려면
+childNodes를 children 으로 바꿔준다
+
+@children이 childNodes를 대신한다
+children은 태그의 이름이 중요하지않다. 자식 전부를 찾는 것
+자식들이란건 배열로 온다!!!!!
+
+@ 형제들을 찾아가는 것도 있다
+알아서 찾아보자!!
+
+
+
+
+
+파일: DomControl
+[ 문서 객체 조작 ]
+생성, 추가, 삭제, 속성부여 - 교체, 복제
+
+
+@ 객체는 순서는 중요하지않다. 그 방식이 중요할뿐?
+
+
+
+
+
+
+
+함수, 이벤트
+
+문서객체조작
