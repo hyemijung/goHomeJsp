@@ -56,6 +56,7 @@ public class MemberListServlet extends GenericServlet {
          htmlStr += "<div>";
          htmlStr += "<a href='./add'>신규 회원</a>";
          htmlStr += "</div>";
+         htmlStr += "<br/>";
          
          out.println(htmlStr);
          

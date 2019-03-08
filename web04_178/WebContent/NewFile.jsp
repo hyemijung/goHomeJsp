@@ -4,25 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 등록</title>
+<title>회원등록결과</title>
 </head>
 <body>
 
-	<h1>회원등록</h1>
-	<form action='add' method='get'>
-		이름: <input type="text" name='name'>
-		이메일: <input type="text" name='email'>
-		암호: <input type="password" name='password'>
-		
-		<input type='submit' value='추가'>
-		<input type='reset' value='취소'>
+<p>등록 성공입니다~!</p>	
 	
-	</form>
-	
-	
-<div>
-	<a href='./add'>신규 회원</a>
-</div>
+
+
 
 </body>
 </html>
