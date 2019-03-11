@@ -15,6 +15,18 @@
   	<url-pattern>/member/list</url-pattern>
   </servlet-mapping>
   
+  <!-- 수정된 회원 조회(회원 한명 조회)  -->
+ <servlet>
+	<servlet-name>MemberOne</servlet-name>
+	<servlet-class>tg.member.servlets.MemeberOneListServlet</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+ 	<servlet-name>MemberOne</servlet-name>
+ 	<url-pattern>/member/one</url-pattern>
+ </servlet-mapping>
+ 
+  
  <!-- 회원 등록  --> 
   <servlet>
   	<servlet-name>MemberAdd</servlet-name>
@@ -25,6 +37,8 @@
   	<servlet-name>MemberAdd</servlet-name>
   	<url-pattern>/member/add</url-pattern>
   </servlet-mapping>
+  
+  
   
   
   

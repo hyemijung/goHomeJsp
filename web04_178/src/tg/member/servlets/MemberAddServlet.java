@@ -19,7 +19,10 @@ public class MemberAddServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		System.out.println("MemberAddServlet의 doGet을 한다");
-
+		
+		String str = req.getParameter("google");
+		System.out.println("doGet 정보 가져옴" + str);
+		
 		res.setContentType("text/html");
 		res.setCharacterEncoding("UTF-8");
 
@@ -54,6 +57,8 @@ public class MemberAddServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("MemberAddServlet의 doPost를 한다");
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -75,17 +80,17 @@ public class MemberAddServlet extends HttpServlet {
 			sql += "(MNO, EMAIL, PWD, MNAME, CRE_DATE, MOD_DATE)";
 			sql += "VALUES(MEMBERS_MNO_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, SYSDATE)";
 
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); //문장을 준비만 한것-+sql을 전체를 넣어서
 			
-			pstmt.setString(1,  emailStr);
-			pstmt.setString(2,  pwdStr);
+			pstmt.setString(1,  emailStr); // 물음표에 대한 설정(물음표도 순서가 있다)
+			pstmt.setString(2,  pwdStr);	// 동적으로 입력
 			pstmt.setString(3,  nameStr);
 			
 			
-			pstmt.executeUpdate();
+			pstmt.executeUpdate(); // 수행 // insert, delete 같은 수정을 한다
 			
 
-			res.setContentType("text/html");
+			res.setContentType("text/html"); 
 			res.setCharacterEncoding("UTF-8");
 
 			PrintWriter out = res.getWriter();
@@ -108,7 +113,7 @@ public class MemberAddServlet extends HttpServlet {
 			htmlStr += "<p>등록 성공입니다~!</p>";
 			
 			
-			out.println(htmlStr);
+			out.println(htmlStr); // 사용자가 보기를 원하는 내용을 println으로
 
 			
 		} catch (ClassNotFoundException e) {

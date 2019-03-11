@@ -41,7 +41,7 @@ public class MemberListServlet extends GenericServlet {
          
          
          
-         rs = stmt.executeQuery(sql);
+         rs = stmt.executeQuery(sql);  // select문을 수행하는 것
          
          res.setContentType("text/html");
          res.setCharacterEncoding("UTF-8");
@@ -54,7 +54,7 @@ public class MemberListServlet extends GenericServlet {
          String htmlStr = "";
          
          htmlStr += "<div>";
-         htmlStr += "<a href='./add'>신규 회원</a>";
+         htmlStr += "<a href='./add?testName=newName&google=intel'>신규 회원</a>"; //하이퍼링크를 통해서도 다른페이지로 넘어갈수 있음
          htmlStr += "</div>";
          htmlStr += "<br/>";
          
