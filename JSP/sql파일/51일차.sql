@@ -19,3 +19,27 @@ from members
 where pwd = '3333';
 
 commit;
+
+
+update members
+set email = 'emailChange', mname = '이름변경', mod_date = sysdate
+where mno = 7;
+
+
+
+select mno, email, mname, cre_date
+from members
+where mno=1;
+
+delete from members
+where mno = 1;
+
+select count(*)
+from members;
+
+
+desc members;
+
+
+select *
+from members;
