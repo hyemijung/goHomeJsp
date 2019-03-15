@@ -43,3 +43,12 @@ desc members;
 
 select *
 from members;
+
+
+insert into members
+(mno, email, pwd, mname, cre_date, mod_date)
+values(members_mno_seq.nextval, 's3@test.com', '3333', '김구', sysdate, sysdate); 
+
+rollback;
+
+
