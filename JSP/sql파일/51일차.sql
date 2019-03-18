@@ -52,3 +52,8 @@ values(members_mno_seq.nextval, 's3@test.com', '3333', '김구', sysdate, sysdat
 rollback;
 
 
+
+select mname, email
+from members
+where email = 's1@test.com'
+and pwd = '1111';
