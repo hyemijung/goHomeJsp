@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tg.member.MemberDto;
+import net.hm.user.HmMemberDto;
 
-@WebServlet(value = "/hmMyUser/list") // /hmMyUser/list ( hmMyUser 앞에 / 표시는 절대경로를 의미하는 것이 아니라, 루트부터 찾아간다는 의미- 프로젝트
-										// web05_280 을 더이상 벗어날수 없다)
+@WebServlet(value = "/hmMyUser/list") 
 public class HmMemberList extends HttpServlet {
 
 	@Override
@@ -53,7 +52,7 @@ public class HmMemberList extends HttpServlet {
 
 //			request 회원 목록 데이터 보관
 //			왜 리스트로 만들었나? 멤버가 몇 명이나 될지 모르는 것(여러명이라 ArrayList 로 만들었다)
-			ArrayList<MemberDto> memberList = new ArrayList<MemberDto>(); // 이후 memberListView.jsp 로 전달한다
+			ArrayList<HmMemberDto> memberList = new ArrayList<HmMemberDto>(); // 이후 memberListView.jsp 로 전달한다
 
 			int mno = 0;
 			String mname = "";
@@ -73,8 +72,8 @@ public class HmMemberList extends HttpServlet {
 				modDate = rs.getDate("MOD_DATE");
 
 //				눈 여겨 보자!!
-				MemberDto memberDto =
-						new MemberDto(mno, mname, email, pwd, creDate, modDate);
+				HmMemberDto memberDto =
+						new HmMemberDto(mno, mname, email, pwd, creDate, modDate);
 				memberList.add(memberDto);
 
 			} // while end

@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<!-- 	<a href='./hmMyUser/list'>연습 페이지로 이동</a> -->
-	<a href='./member/list'>연습 페이지로 이동</a>
+	<a href='./hmMyUser/list'>연습 페이지로 이동</a>
+<!-- 	<a href='./member/list'>연습 페이지로 이동</a> -->
 
 </body>
 </html>

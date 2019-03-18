@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.tg.member.MemberDto"%>
+<%@page import="net.hm.user.HmMemberDto"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,12 +20,11 @@
 	<br/>
 	
 	<%
-		ArrayList<MemberDto> memberList = 
-			(ArrayList<MemberDto>)request.getAttribute("memberList");
-	
-		for(MemberDto memberDto : memberList){
-	
-	%>
+			ArrayList<HmMemberDto> memberList = 
+			(ArrayList<HmMemberDto>)request.getAttribute("memberList");
+			
+				for(HmMemberDto memberDto : memberList){
+		%>
 <!-- 	여기가 내가 추가함 -->
 <%-- 	<%=memberDto.getModifiedDate() %> --%>
 <!-- 	저 표현식만 없으면 전부 Html로 인식함  -->
