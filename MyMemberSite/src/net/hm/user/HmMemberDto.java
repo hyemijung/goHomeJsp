@@ -15,6 +15,16 @@ public class HmMemberDto {
 		super();
 	}
 	
+	
+	
+	public HmMemberDto(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+	}
+
+
+
 	public HmMemberDto(int no, String name, String email, Date createDate) {
 		super();
 		this.no = no;

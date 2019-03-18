@@ -34,8 +34,8 @@
 	<%=memberDto.getEmail()%>,
 	<%=memberDto.getPassword() %>,
 	<%=memberDto.getCreateDate()%>,
-	
-	<a href='./delete?no=<%=memberDto.getNo()%>'>[삭제]</a> 수정한 날짜: <%=memberDto.getModifiedDate() %>
+	<%=memberDto.getModifiedDate() %>
+	<a href='./delete?no=<%=memberDto.getNo()%>'>[삭제]</a> 
 	<br>
 	
 	<%

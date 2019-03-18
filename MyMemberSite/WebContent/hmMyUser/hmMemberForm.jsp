@@ -16,6 +16,7 @@
 		이메일: <input type="text" name="email"><br>
 		암호: <input type="password" name="password"><br>
 		<input type="submit" value="추가">
+		<input type="reset" value="지우기">
 		<input type="reset" value="취소">
 	</form>
 	
