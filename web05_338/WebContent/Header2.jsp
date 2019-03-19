@@ -1,9 +1,9 @@
-<%@page import=net.hm.user.HmMemberDto"%>
+<%@page import="com.tg.member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%  
-HmMemberDto memberDto =(HmMemberDto)session.getAttribute("member");
+	MemberDto memberDto =(MemberDto)session.getAttribute("member");
 // 	System.out.println("어떤 값일까????" + request.getContextPath());
 %>
     

@@ -25,6 +25,14 @@
 	
 </script>
 </head>
+
+<%
+// 	MemberDto memberDto = new MemberDto();
+// 	request.getAttribute("");
+// 	memberDto.getName();
+// 	${memberDto.name} // 위의 내용은 이것과 동일하다
+%>
+
 <body>
 
 
@@ -35,7 +43,7 @@
 		번호: <input type="text" id='no' name="no" value="${memberDto.no}" readonly="readonly"><br>
 		이름: <input type="text" name="name" value="${memberDto.name}"><br>
 		이메일: <input type="text" name="email" value="${memberDto.email}"><br>
-		가입일: ${memberDto.createDate}<br>
+		가입일: ${requestScope.memberDto.createDate}<br>
 		<input type="submit" value="수정" > 
 		<input type="button" value="삭제" onclick="deleteUserFnc();"> 
 		<input type="button" value="뒤로가기" onclick="backPageFnc();">
