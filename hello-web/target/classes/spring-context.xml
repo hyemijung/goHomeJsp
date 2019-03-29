@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="helloDao" class="com.tg.hello.HelloDao"/>
+	
+<!-- 	new ScoreDto(10, 20, "이야 신기하다"); -->
+<!-- 	s = new ScoreDto(); -->
+<!-- 	s.setKor(80;) -->
+<!-- 	s.setEng(70;) -->
+	<bean id="scoreDto" class="com.tg.edu.ScoreDto">
+		<property name="kor" value="80"></property>
+		<property name="eng" value="70"></property>
+
+		<constructor-arg>
+			<value type="java.lang.Integer">10</value>
+		</constructor-arg >
+		<constructor-arg type="int" value="20"/>
+<!-- 		<constructor-arg type="String"> -->
+<!-- 			<value>이야 신기 하다</value> -->
+<!-- 		</constructor-arg> -->
+<!-- 생성자안에 정의 한것만 사용할수 있다. getter setter 도 당연히 있어야한다
+	 생성자에 String을 정의해야 value에 문자를 적을수 있다 -->
+	</bean>
+	
+	<bean id="student" class="com.tg.edu.Student">
+		
+	</bean>
+	
+	<bean id="eduDao" class="com.tg.edu.EduDao"/>  
+		
+	
+	
+</beans>

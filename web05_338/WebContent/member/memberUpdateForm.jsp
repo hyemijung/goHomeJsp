@@ -49,7 +49,6 @@
 		<input type="button" value="뒤로가기" onclick="backPageFnc();">
 	</form>
 
-<jsp:include page="/Tail.jsp"/>  
-
+<%-- <jsp:include page="/Tail.jsp"/> --%>
 </body>
 </html>
