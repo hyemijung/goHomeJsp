@@ -21,11 +21,25 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberSelectList();
 	}
 
+	//1 맵방식
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		
 		return memberDao.memberExist(paramMap);
+	}
+
+	@Override
+	public int memberInsertOne(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberInsertOne(memberVo);
+	}
+
+	//2 모델방식
+	@Override
+	public MemberVo memberExist1(MemberVo paramMemberMap) {
+		// TODO Auto-generated method stub
+		return memberDao.memberExist1(paramMemberMap);
 	}
 
 }

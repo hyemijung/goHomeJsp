@@ -38,4 +38,12 @@
 		
 	</select>
 	
+	<insert id="memberInsertOne" parameterType="com.edu.member.vo.MemberVo">
+		insert into members
+		(mno, email, pwd, mname, cre_date, mod_date)
+		values(MEMEBERS_MNO_SEQ.nextval, #{email},  #{password},
+        		 #{name}, sysdate, sysdate) 
+	
+	</insert>
+	
 </mapper>

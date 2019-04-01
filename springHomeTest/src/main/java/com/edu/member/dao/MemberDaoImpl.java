@@ -15,16 +15,33 @@ public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	String namespace = "com.edu.member.";
+	
 	@Override
 	public List<MemberVo> memberSelectList() {
 
 		return sqlSession.selectList("com.edu.member.memberSelectList");
 	}
 
+	//1 맵방식
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.edu.member.memberExist", paramMap);
+	}
+
+	@Override
+	public int memberInsertOne(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + "memberInsertOne", 
+				memberVo);
+	}
+
+	// 모델방식
+	@Override
+	public MemberVo memberExist1(MemberVo paramMemberMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberExist1", paramMemberMap);
 	}
 	
 	

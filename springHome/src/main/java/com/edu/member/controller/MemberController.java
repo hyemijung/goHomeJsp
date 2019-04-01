@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +41,19 @@ public class MemberController {
 		return "member/memberListView";
 	}
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.GET)
-	public String login(Model model) {
+	@RequestMapping(value="/auth/login.do", method=RequestMethod.GET)
+	public String login(HttpSession session, Model model) {
 		log.debug("Welcome MemberController login 페이지 이동!");
 		
 		return "auth/loginForm";
 	}
 	
+		
 	
-	@RequestMapping(value="/loginCtr.do", method=RequestMethod.POST)
-	public String loginCtr(String email, String password, Model model) {
-		log.debug("Welcome MemberController login 페이지 이동!" + email + ", " + password);
+	@RequestMapping(value="/auth/loginCtr.do", method=RequestMethod.POST)
+	public String loginCtr(String email, String password, HttpSession session, Model model) {
+		log.debug("Welcome MemberController login 페이지 이동!"
+				+ email + ", " + password);
 		
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("email", email);
@@ -57,10 +61,51 @@ public class MemberController {
 		
 		MemberVo memberVo = memberService.memberExist(paramMap);
 		
-		model.addAttribute("memberVo", memberVo);
+		String viewUrl = "";
+		if (memberVo != null) {
+			// 회원이 존재한다면 세션에 담고
+			// 회원 전체 조회 페이지로 이동
+			session.setAttribute("_memberVo_", memberVo);
+			
+			viewUrl = "redirect:/member/list.do";
+		} else {
+//			System.out.println("일단 안되는걸로 치자 ");
+			viewUrl = "/auth/loginFail";
+//			viewUrl = "home";
+		}
 		
-		return "home";
+//		model.addAttribute("memberVo", memberVo);
+		
+		return viewUrl;
 	}
 	
+	@RequestMapping(value="/auth/logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session, Model model) {
+		log.debug("Welcome MemberController logout 페이지 이동!");
+		
+		// 세션의 객체들 파기
+		session.invalidate();
+		
+		return "redirect:/auth/login.do";
+	}
 	
+	@RequestMapping(value="/member/add.do", method=RequestMethod.GET)
+	public String memberAdd(Model model) {
+		log.debug("Welcome MemberController memberAdd 페이지 이동!");
+		
+				
+		return "member/memberForm";
+	}
+	
+	@RequestMapping(value="/member/addCtr.do", 
+			method=RequestMethod.POST)
+	public String memberAdd(MemberVo memberVo, Model model) {
+		log.debug("Welcome MemberController memberAdd 신규등록 처리!"
+				+ memberVo);
+		
+		memberService.memberInsertOne(memberVo);
+		
+		return "redirect:/member/list.do";
+	}
+		
 }

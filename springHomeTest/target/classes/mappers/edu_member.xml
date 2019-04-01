@@ -29,5 +29,12 @@
 		FROM MEMBERS
 		WHERE EMAIL = #{email} AND PWD = #{pwd}
 	</select>
+	
+	<select id="memberExist1" parameterType="com.edu.member.vo.MemberVo"
+		resultMap="memberResultMap">
+		SELECT MNAME, EMAIL
+		FROM MEMBERS
+		WHERE EMAIL = #{email} AND PWD = #{password}
+	</select>
 
 </mapper>
