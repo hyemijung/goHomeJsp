@@ -6,7 +6,7 @@ import java.util.Map;
 import com.edu.member.vo.MemberVo;
 
 public interface MemberService {
-
+	
 	public List<MemberVo> memberSelectList();
 	public MemberVo memberExist(Map<String, Object> paramMap);
 	public int memberInsertOne(MemberVo memberVo);

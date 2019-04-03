@@ -31,8 +31,7 @@
 
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>*.do</url-pattern> 
-<!-- 		페이지 요청을 모든 url 경로를 .do로 해야만 한다(이런것을 통해 사용자 접근을 막는다) -->
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 	<filter>
@@ -55,7 +54,4 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
-	
-	
 </web-app>

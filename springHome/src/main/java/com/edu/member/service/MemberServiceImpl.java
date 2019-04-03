@@ -8,45 +8,40 @@ import org.springframework.stereotype.Service;
 
 import com.edu.member.dao.MemberDao;
 import com.edu.member.vo.MemberVo;
-
 @Service
-public class MemberServiceImpl implements MemberService {
-
+public class MemberServiceImpl implements MemberService{
+	
 	@Autowired
-	public MemberDao memberDao; // 비지니스로직은 데이터베이스를 기초로하기때문에 memberDao를 인스턴스 변수로
-
+	public MemberDao memberDao;
+	
 	@Override
-	public List<MemberVo> memberSelectList() {
-
+	public List<MemberVo> memberSelectList(){
+		
 //		List<MemberVo> list = memberDao.memberSelectList();
-
 //		String name = list.get(0).getName();
-//				
-//		if("홍길동".equals(name)) {
-//			System.out.println("확실해" + name);
+//		list.get(0).setName("홍길동");
+//		if ("홍길동".equals(name)) {
 //		}
-
-//		return list;
-
 		return memberDao.memberSelectList();
 	}
 
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {
-
-		MemberVo memberVo = memberDao.memberExist(paramMap);
-
-		return memberVo;
-		
-// 리턴값을 보내는 것이므로 위의 두줄을 생략하여 아래 한줄로 처리해도된다. 
-//		membervo의 주소를 보내는것 뿐이다
-//		return memberDao.memberExist(paramMap); 
-
-	}
-
-	@Override
-	public int memberInsertOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
+		MemberVo memberVo = memberDao.memberExist(paramMap);
+		
+//		memberDao.memberExist(paramMap) <- 오류는 아니지만 이렇게 쓰면 메서드 실행되고 생겼다가 바로 사라짐
+		//여기서만 쓰고 사라지는 33라인일 뿐임
+		
+		return memberVo;
+		//결국은 주소만 보내주는것임
+		//return memberDAO.memberExist(paramMap)이랑 같음
+	}
+	//Dao와 service가 햇갈린다면?
+	//service의 return 은 memberDao임!
+	
+	public int memberInsertOne(MemberVo memberVo) {
+		
 		return memberDao.memberInsertOne(memberVo);
 	}
 
@@ -61,4 +56,8 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.memberUpdateOne(memberVo);
 	}
+	
+	
+	
+	
 }

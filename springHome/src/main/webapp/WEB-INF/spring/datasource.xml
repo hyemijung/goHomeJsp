@@ -7,31 +7,44 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:property-placeholder
+	 <context:property-placeholder
 		location="classpath:properties/jdbc.properties"/>
+		
+<!-- 	이렇게 길었던게 위에 한줄로 바뀜!	<bean id="propertyConfigurer" 
+	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" />
+		<list>
+			<value>Classpath:properties/jdbc.properties</value>
+		</list>
+	</bean> -->
 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driverClassName}"/>
-		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driverClassName}"/><!-- jdbc는 jdbc.properties가 되는듯? -->
+		<property name="url" value="${jdbc.url}"/>						<!-- 그 파일안의 url 값을 갖고오는듯 -->
 		<property name="username" value="${jdbc.username}"/>
 		<property name="password" value="${jdbc.password}"/>
 		<property name="initialSize" value="${jdbc.initialSize}"/>
 	</bean>
-
+<!-- 	데이터의 생성과 소요, 삭제를 이 안에서 관리함 ==>엄청나게 효율적인 방식임 -->
+<!-- 	dbcp : database connection pulling -->
+	
+	
+<!-- 	위에서 넣은걸 이곳 공장에서 만들어줌 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation"
-			value="classpath:/config/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:config/mybatis-config.xml"/>
 		<property name="mapperLocations" value="classpath:/mappers/*.xml"/>
+	
 	</bean>
-
+	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
-		<constructor-arg index="1" value="BATCH"/>
+		<constructor-arg index="1" value="SIMPLE"/>
+<!-- 		<constructor-arg index="1" value="BATCH"/> -->
 	</bean>
+	 
 	
-	
-	
+
 </beans>
