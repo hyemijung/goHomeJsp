@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<jsp:include page="/WEB-INF/views/Header.jsp"/>
+
 	<h2>사용자 로그인</h2>
 
 	<form action="loginCtr.do" method="post">
@@ -28,6 +30,8 @@
 			</table>
 		</div>
 	</form>
+
+<jsp:include page="/WEB-INF/views/Tail.jsp"/>  
 
 </body>
 </html>

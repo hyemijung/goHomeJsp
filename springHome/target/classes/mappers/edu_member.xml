@@ -46,4 +46,21 @@
 	
 	</insert>
 	
+	<select id="memberSelectOne" parameterType="int"
+		resultMap="memberResultMap">
+		SELECT MNO, MNAME, EMAIL, CRE_DATE
+		FROM MEMBERS
+		WHERE MNO = #{no}
+<!-- 	한명의 유일한 값을 불러오고 싶기때문에 기본키로 설정된 no를 불러온 것이다 -->
+	</select>
+	
+	
+	<update id="memberUpdateOne" parameterType="memberVo">
+		update 	members
+		set 	mname = #{name},
+		    	email = #{email},    
+		    	pwd = #{password},
+		   		mod_date = SYSDATE
+		where 	mno = #{no}
+	</update>
 </mapper>

@@ -41,6 +41,24 @@ public class MemberController {
 		return "member/memberListView";
 	}
 	
+	
+	@RequestMapping(value="/member/listOne.do") // 생략하면 get방식
+	public String memberListOne(int no, Model model) { 
+		// model은 다른페이지로 정보를 전달하는 보관소 역할
+		// model은 request 한것처럼 값을 담아 어느페이지로든 전달할수 있다
+		// model을 사용하면 자동형변환 되어 형변환 할 필요가 없다
+		log.debug("Welcome MemberListOne enter! -{}" + no);
+		
+		MemberVo memberVo = memberService.memberSelectOne(no);
+		
+		model.addAttribute("memberVo", memberVo); //jsp값이 필요하면 모델에 담아라
+		
+		return "member/memberListOneView";
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/auth/login.do", method=RequestMethod.GET)
 	public String login(HttpSession session, Model model) {
 		log.debug("Welcome MemberController login 페이지 이동!");
@@ -107,5 +125,30 @@ public class MemberController {
 		
 		return "redirect:/member/list.do";
 	}
+	
+	
+	@RequestMapping(value="/member/update.do") // 생략하면 get방식
+	public String memberUpdate(int no, Model model) { 
 		
+		log.debug("Welcome MemberUpdate enter -{}" + no);
+		
+		MemberVo memberVo = memberService.memberSelectOne(no);
+		
+		model.addAttribute("memberVo", memberVo); //jsp값이 필요하면 모델에 담아라
+		
+		return "member/memberUpdateForm";
+	}
+	
+	@RequestMapping(value="/member/updateCtr.do", 
+			method=RequestMethod.POST)
+	public String memberUpdateCtr(MemberVo memberVo, Model model) {
+		log.debug("Welcome MemberController memberUpdateCtr 신규등록!"
+				+ memberVo);
+		
+		memberService.memberUpdateOne(memberVo);
+		
+		return "common/successPage";
+	}
+		
+	
 }
