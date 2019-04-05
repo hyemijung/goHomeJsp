@@ -13,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
+import com.edu.util.Paging;
 
 @Controller
 public class MemberController {
@@ -31,8 +33,11 @@ public class MemberController {
 	// 여기서 일처리를 하겠다는 하나의 선언?
 
 	// 회원목록 조회 화면으로
-	@RequestMapping(value = "/member/list.do", method = RequestMethod.GET)
-	public String memberList(Model model) {
+	@RequestMapping(value = "/member/list.do"
+			, method = {RequestMethod.GET, RequestMethod.POST})
+	public String memberList(
+			@RequestParam(defaultValue ="1") int curPage, 
+			Model model) {
 		// 간혹가다 getMembers 이런식으로 메서드명 지정하는 곳도 있음(getter/setter)
 		// memberListByNo, memberListByMno 이런식으로
 		// 프로젝트의 발전가능성을 멀리 본다면 신중히 작성해야함?
@@ -40,15 +45,31 @@ public class MemberController {
 		// request의 기능을 model이 대신해줌. 쓸순있지만 자동으로 구현된거나 마찬가지라 안씀
 		// model은 스프링이 준비해준 객체임(?)
 		// 컨트롤러는 무조건 service에 정보를 넘겨줌
-		log.info("Welcome MemberController enter! ");
-		List<MemberVo> memberList = memberService.memberSelectList();
+		log.info("Welcome MemberController enter! -{}"
+				, curPage);
+	
+		// 게시물의 총 갯수를 알아야만이 몇개씩 쪼갤지 생각할수 있는 것(한 화면(한페이지)에서 몇개씩(보여질 게시물수) 보여줄건지 결정할수 있다)
+		int totalCount = memberService.memberSelectTatalCount();
+		
+		Paging memberPaging = new Paging(totalCount, curPage);
+		
+		int start = memberPaging.getPageBegin();
+		int end = memberPaging.getPageEnd();
+		
+		List<MemberVo> memberList = memberService.memberSelectList(start, end);
 
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("memberPaging", memberPaging);
+		
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("pagingMap", pagingMap);
 		// 데이터를 담아 전달할 것이 없어서 session안쓰고 model 씀??
 
 		return "member/memberListView";
 		// JUnit테스트 가능!
 	}
+	
 
 	// 다양한 방법을 보여주기 위해 이상한(?) 짓 하는중.......?!?!?!?!?!!
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
@@ -120,6 +141,8 @@ public class MemberController {
 		
 		return "auth/loginForm";
 	}
+	
+	
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
 	public String memberAdd(HttpSession session, Model model) {
 		log.debug("Welcome MemberController enter!  memberAdd 페이지로 이동 !");
@@ -232,13 +255,22 @@ public class MemberController {
 				}
 			}
 		}
-		
-		
-		
+						
 		return "common/successPage";
 	}
 	
 	
-	
+	@RequestMapping(value = "/member/deleteCtr.do",
+			method = RequestMethod.GET)
+	public String memberDelete(@RequestParam(value="mno") int no, Model model) {
+		log.debug("Welcome MemberController memberDelete! "
+				+ "회원삭제처리! {}", no);
+		
+		// 아래 결과값은 int 숫자 -> 필요하면 다른곳에 담아라
+		memberService.memberDelete(no);
+		
+		// 기존 사항을 파기해야함으로 redirect 사용함 
+		return "redirect:/member/list.do";
+	}
 	
 }

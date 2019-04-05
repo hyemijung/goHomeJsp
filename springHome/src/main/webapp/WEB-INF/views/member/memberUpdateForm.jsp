@@ -7,13 +7,22 @@
 <script type="text/javascript">
 	window.onload = function(){
 		var memberNameInputObj = document.getElementById("memberName");
-		
-		
-		
+				
 		memberNameInputObj.style.backgroundColor = '#E7E7E7';
 		
 	}
 
+	function pageMoveDeleteFnc(mno) {
+		var url = 'deleteCtr.do?mno=' + mno;
+		location.href = url;
+	}
+	
+	
+	function pageMoveBackFnc(no) {
+		var url = 'listOne.do?no=' + no;
+		location.href = url;
+// 		location.href = 'listOne.do?no=' + no;
+	}
 </script>
 
 <meta charset="UTF-8">
@@ -49,9 +58,10 @@
 		<tr>
 		<td></td>
 			<td>
+<!-- 			submit은 잘 사용하지 않는다 validatin처리가 되어있지않아서 -->
 				<input type="submit" value="수정">
-				<input type="button" value="탈퇴">
-				<input type="reset" value="뒤로">
+				<input type="button" value="탈퇴" onclick="pageMoveDeleteFnc(${memberVo.no});">
+				<input type="reset" value="뒤로" onclick="pageMoveBackFnc(${memberVo.no});">
 			</td>
 		</tr>
 	</table>

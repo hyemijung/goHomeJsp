@@ -1,5 +1,6 @@
 package com.edu.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,16 +22,23 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	@Override
-	public List<MemberVo> memberSelectList() {
+	public List<MemberVo> memberSelectList(int start, int end) {
 		// TODO Auto-generated method stub
 		
-		List<MemberVo> memberList = null;
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		
-		memberList = sqlSession.selectList(
-				namespace + "memberSelectList");
+//		List<MemberVo> memberList = null;
+//		
+//		memberList = sqlSession.selectList(
+//				namespace + "memberSelectList");
 				//spring인가, myBatis에서 제공하는 네이밍규칙
 //		memberList = new ArrayList<MemberVo>();
-		return memberList;
+//		return memberList;
+		
+		return sqlSession.selectList(
+				namespace + "memberSelectList", map);
 	}
 
 	@Override
@@ -56,6 +64,19 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberUpdateOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + "memberUpdateOne", memberVo);
+	}
+
+	@Override
+	public int memberDelete(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "memberDelete", no);
+	}
+
+	@Override
+	public int memberSelectTatalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(
+				namespace + "memberSelectTatalCount");
 	}
 	
 	

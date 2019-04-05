@@ -12,14 +12,32 @@
 	
 	</resultMap>
 	
+<!-- 	<select id="memberSelectList" parameterType="map" -->
+<!-- 		resultMap="memberResultMap"> -->
+		
+<!-- 		SELECT MNO, MNAME, EMAIL, CRE_DATE -->
+<!-- 		FROM MEMBERS -->
+<!-- 		ORDER BY CRE_DATE DESC -->
+		
+<!-- 	</select> -->
+
+
+
 	<select id="memberSelectList" parameterType="map"
 		resultMap="memberResultMap">
 		
 		SELECT MNO, MNAME, EMAIL, CRE_DATE
-		FROM MEMBERS
-		ORDER BY CRE_DATE DESC
+			FROM(
+    		SELECT ROWNUM RNUM, M.MNO, M.MNAME, M.EMAIL, M.CRE_DATE
+    			FROM(
+			         SELECT MNO, MNAME, EMAIL, CRE_DATE
+			         FROM MEMBERS
+			         ORDER BY MNO DESC ) M
+			) MEMBER
+		WHERE RNUM BETWEEN #{start} AND #{end}
 		
 	</select>
+
 
 	<select id=""  parameterType="int">
 <!-- 		업무에서 원하는 select 문장을 적는다 -->
@@ -57,10 +75,24 @@
 	
 	<update id="memberUpdateOne" parameterType="memberVo">
 		update 	members
-		set 	mname = #{name},
-		    	email = #{email},    
-		    	pwd = #{password},
-		   		mod_date = SYSDATE
-		where 	mno = #{no}
+		<set>
+			<if test="name != ''">MNAME = #{name},</if>
+			<if test="email != ''">EMAIL = #{email},</if>
+			<if test="password != ''">PWD = #{password},</if>
+			MOD_DATE = SYSDATE
+		</set>
+		   		
+		WHERE 	MNO = #{no}
 	</update>
+	
+	<delete id="memberDelete" parameterType="int">
+		delete from members
+		where mno= #{no}
+	</delete>
+	
+	<select id="memberSelectTatalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBERS
+	</select>
+
 </mapper>

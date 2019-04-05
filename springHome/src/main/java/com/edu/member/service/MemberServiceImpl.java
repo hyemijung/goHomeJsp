@@ -15,14 +15,14 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDao memberDao;
 	
 	@Override
-	public List<MemberVo> memberSelectList(){
+	public List<MemberVo> memberSelectList(int start, int end){
 		
 //		List<MemberVo> list = memberDao.memberSelectList();
 //		String name = list.get(0).getName();
 //		list.get(0).setName("홍길동");
 //		if ("홍길동".equals(name)) {
 //		}
-		return memberDao.memberSelectList();
+		return memberDao.memberSelectList(start, end);
 	}
 
 	@Override
@@ -55,6 +55,18 @@ public class MemberServiceImpl implements MemberService{
 	public int memberUpdateOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		return memberDao.memberUpdateOne(memberVo);
+	}
+
+	@Override
+	public int memberDelete(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.memberDelete(no);
+	}
+
+	@Override
+	public int memberSelectTatalCount() {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectTatalCount();
 	}
 	
 	

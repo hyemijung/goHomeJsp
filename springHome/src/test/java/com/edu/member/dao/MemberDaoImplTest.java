@@ -23,26 +23,26 @@ public class MemberDaoImplTest {
 	@Autowired
 	public MemberServiceImpl memberServiceImpl;
 	
-	@Test
-	public void testMemberSelectList() {
-		
-		memberDaoImpl.memberSelectList();
-		
-		if (memberServiceImpl.memberSelectList().size() > 0) {
-			
-			String name = memberServiceImpl.memberSelectList().get(0).getName();
-			
-			
-//			Assert.assertTrue(name.equals("홍길동"));
-			
-			Assert.assertEquals("희야", name);
-			
-			Assert.assertTrue(memberServiceImpl.memberSelectList().size() > 0);
+//	@Test
+//	public void testMemberSelectList() {
+//		
+//		memberDaoImpl.memberSelectList();
+//		
+//		if (memberServiceImpl.memberSelectList().size() > 0) {
+//			
+//			String name = memberServiceImpl.memberSelectList().get(0).getName();
+//			
+//			
+////			Assert.assertTrue(name.equals("홍길동"));
+//			
+//			Assert.assertEquals("희야", name);
+//			
+//			Assert.assertTrue(memberServiceImpl.memberSelectList().size() > 0);
 //		memberServiceImpl.memberSelectList();
 //		List<MemberVo> list = memberDaoImpl.memberSelectList();
-	}
-	}
-	
+//	}
+//	}
+//	
 //	@Ignore
 //	public void testMemberSelectList() {
 //		// TODO Auto-generated method stub
