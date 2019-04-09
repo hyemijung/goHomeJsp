@@ -123,3 +123,35 @@ WHERE RNUM BETWEEN 1 AND 4;
 -- ROWNUM의 특징: 그냥 가상의 컬럼으로 순서대로만 나열하자 
 --(애초에 이것을 가공할 생각이없었음, 근데 행에 대한 컬럼을 따로만들지 않고 로우넘을 사용하는게 너무 좋았음
 -- 따라서 로우넘의 약점을 보완하고자 인라뷰안에 넣어서 사용하니 로우넘을 원하는대로 가공해서 보는것이 가능했다)
+
+
+
+
+
+
+create table tb_file (
+    idx number,
+    parent_seq number not null,
+    original_file_name varchar2(256) not null,
+    stored_file_name varchar2(36) not null,
+    file_size number,
+    cre_date date not null,
+    primary key (idx)
+);
+--파일을 저장할수 있는 테이블
+
+create sequence tb_file_idx_seq
+start with 1
+increment by 1;
+
+select * 
+from tb_file;
+
+
+-- 의미있는 정보로 가공한 select(그래서 select이 중요하고 어렵다. 핵심!!!!)
+-- 사용자에게 의미없는 내용을 보여줄 필요없다
+-- select할때 기본키는 항상중요하다(다른 곳에 가도 그내용이 기록될려면)
+SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME, 
+			ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
+		FROM TB_FILE
+		WHERE PARENT_SEQ = 324;
