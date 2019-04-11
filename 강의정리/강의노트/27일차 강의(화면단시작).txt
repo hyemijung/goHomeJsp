@@ -80,8 +80,10 @@ Download -> tomcat8 ->  Archives (로 가면 옛날버전 다운로드 가능: 회사에서 쓰는 
 이것을 잘라내기하여 c드라이브에 붙여넣기
 
 eclipseweb폴더를 클릭하여
-eclipse.exe 를 이름바꾸기 -> eclipse.exe으로
-그리고 이것 마우스 우클릭해서 바로가기만들어서 바로가기 이름을  바탕화면에 추가 한다
+eclipse.exe 의 바로가기를 만든다
+-> 바로가기 파일의 이름바꾸기(eclipse.exe의 설정파일 자체의 이름을 바꾸면 안된다!!!!!)
+-> eclipseWeb 바로가기를 사용하게 쉽게 바탕화면에 가져다 놓는다
+
 
 바로가기의 이름을 기존것과 구분되도록 eclipseWeb.exe 로 바꿔준다
 
